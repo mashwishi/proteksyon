@@ -1,0 +1,204 @@
+/** 04.1 Btns */
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $theme-accent;
+    color: $white;
+    font-weight: bold;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    line-height: 1.25rem;
+    font-size: .8125rem;
+    &:focus{
+        outline: none;
+        box-shadow: none;
+    }
+    &-sm{
+        padding: 0.4375rem 1.375rem;
+    }
+    &:hover{
+        color:$white;
+        background-color: darken($theme-accent,10%);
+    }
+    &-transparent{
+        background-color: transparent !important;
+        padding-left: 0;
+        padding-right: 0;
+        color:$theme-accent;
+        .tc-light &{
+            color:$white;
+        }
+        &:hover{
+            color:darken($theme-accent,10%);
+            .tc-light &{
+                color:$white;
+            }
+        }
+    }
+    .icon{
+        font-size: 1rem;
+        line-height: 1.375rem;
+    }
+    span + .icon,.icon + span{
+        padding-left: 0.5rem;
+    }
+    &-white{
+        background-color: $white;
+        color:$theme-accent;
+        &:hover{
+            background-color: $white;
+            color: $base-dark;
+        }
+    }
+    &-danger{
+        background-color: $danger;
+        &:hover{
+            color:$white;
+            background-color: darken($danger,10%);
+        }
+    }
+}
+
+@media (min-width:576px){
+    .btn{
+        padding: 0.6875rem 1.75rem;
+        line-height: 1.5rem;
+        font-size: 1rem;
+        &-sm{
+            padding: 0.4375rem 1.375rem;
+        }
+        &-transparent{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .icon{
+            font-size: 1.125rem;
+            line-height: 1.5rem;
+        }
+        span + .icon,.icon + span{
+            padding-left: 0.75rem;
+        }
+    }
+}
+
+/** 04.2 Logo */
+.logo{
+    &-light{
+        display: none;
+        .tc-light &{
+            display: block;
+        }
+    }
+    &-dark{
+        .tc-light &{
+            display: none;
+        }
+    }
+}
+
+
+/** 04.3 Badge */
+.badge{
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+    padding: .25rem .5rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+/** 04.4 Form */
+.form{
+    &-group{
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+    &-label{
+        font-size: 1rem;
+        font-weight: 700;
+        color: $base-color;
+    }
+    &-control{
+        padding: .625rem 1rem;
+        height: calc(.625rem*2 + 1em*1.5 + 2px);
+        appearance: none;
+        -webkit-appearance: none;
+        &-select{
+            position: relative;
+            &:after{
+                font-family:$nioicon;
+                content: $ni-chevron-down;
+                pointer-events: none;
+                position: absolute;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                right: .25rem;
+                top: 50%;
+                transform: translateY(-50%);
+                width: calc(1rem + 12px);
+                height: calc(1rem + 12px);
+            }
+        }
+    }
+    &-textarea{
+        min-height: 120px;
+        resize: none;
+    }
+    &-text{
+        font-size: .75rem;
+        color: $base-light;
+        font-style: italic;
+    }
+}
+
+input ~ .error,textarea ~ .error, select ~ .error{
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    background: $danger;
+    color: $white;
+    font-size: 11px;
+    line-height: 18px;
+    padding: 2px 10px;
+    border-radius: 2px;
+    z-index: 9;
+    white-space: nowrap;
+    &:after{
+        position: absolute;
+        content: '';
+        height: 0;
+        width: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid $danger;
+        border-bottom: 5px solid transparent; 
+        bottom: -5px;
+        left:3px;
+    }
+}
+
+/** 04.5 Link */
+.link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Roboto;
+    line-height: 1;
+    border: none;
+    background: transparent;
+    transition: all .3s ease;
+    white-space: nowrap;
+    .icon {
+        font-size: 1.3em;
+    }
+    span,.icon {
+        display: inline-block;
+    }
+    
+    .icon+span, span+.icon {
+        padding-left: 10px;
+    }
+}

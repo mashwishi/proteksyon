@@ -1,0 +1,584 @@
+/** 06.1 Header */
+.nk-header{
+    overflow-x: hidden;
+}
+/** 06.2 Section */
+.section{
+    overflow-x: hidden;
+    &-m{
+        padding: 40px 0;
+    }
+    &-l{
+        padding: 50px 0;
+    }
+
+    //Head
+    &-head{
+        padding-bottom: 40px;
+        .subtitle{
+            text-transform: uppercase;
+            color: $theme-accent;
+            font-size: 12px;
+            margin-bottom: .125rem;
+            letter-spacing: 0.04em;
+        }
+        .title{
+            text-transform: uppercase;
+            + p{
+                padding-top: .6875rem;
+            }
+        }
+        &.text-center[class*="wide"]{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    &-subhead{
+        padding-bottom: 30px;
+        .title{
+            font-size: 1.5rem;
+        }
+    }
+
+    &-actions{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-top: 30px;
+        margin: -.5rem;
+        li{
+            padding: .5rem;
+        }
+    }
+
+    &-cta{
+        margin-top: 40px;
+        .notes{
+            display: flex;
+            .icon{
+                font-size: 1.75rem;
+                width: 2.5rem;
+                flex-shrink: 0;
+                color: $accent-200;
+            }
+            p{
+                font-style: italic;
+                strong{
+                    color: $theme-accent;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+
+    &-content{
+        &-boxed{
+            padding:1.25rem 1.5rem 1.5rem;
+            border-radius: 4px;
+            background: $white;
+            box-shadow: 0px 5px 40px 0px rgba($base-color, 0.08);
+        }
+    }
+
+    //@i-v110
+    &-head-s2{
+        padding-bottom: 40px;
+        &-sm{
+            padding-bottom: 20px;
+        }
+        .subtitle{
+            color: $danger;
+            margin-bottom: .5rem;
+            letter-spacing: 0.04em;
+        }
+        .title{
+            color: $base-dark;
+            + p{
+                padding-top: .6875rem;
+            }
+        }
+        p{
+            span{
+                color: $theme-accent;
+            }
+        }
+        &.text-center[class*="wide"]{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    &-cta{
+        &-boxed{
+            padding: 1.5rem;
+            border: 2px solid $accent-100;
+            border-radius: 12px;
+        }
+    }
+}
+
+@media (min-width:576px){
+    .section{
+        &-m{
+            padding: 60px 0;
+        }
+        &-l{
+            padding: 70px 0;
+        }
+        &-head{
+            padding-bottom: 50px;
+            .subtitle{
+                font-size: 1.125rem;
+                margin-bottom: .125rem;
+                letter-spacing: 0.1em;
+            }
+            .title{
+                + p{
+                    padding-top: 1rem;
+                }
+            }
+        }
+        &-subhead{
+            padding-bottom: 40px;
+            .title{
+                font-size: 1.875rem;
+            }
+        }
+    
+        &-actions{
+            padding-top: 40px;
+            margin: -1rem;
+            li{
+                padding: 1rem;
+            }
+        }
+    
+        &-cta{
+            margin-top: 40px;
+            .notes{
+                .icon{
+                    font-size: 2.75rem;
+                    width: 4rem;
+                }
+            }
+        }
+    
+        &-content{
+            &-boxed{
+                padding:2.25rem 2.5rem 2.5rem;
+            }
+        }
+    }
+}
+
+@media (min-width:768px){
+    .section{
+        overflow-x: hidden;
+        &-m{
+            padding: 70px 0;
+        }
+        &-l{
+            padding: 90px 0;
+        }
+        &-head{
+            padding-bottom: 60px;
+        }
+    
+        &-subhead{
+            padding-bottom: 45px;
+        }
+    
+        &-cta{
+            margin-top: 70px;
+        }
+    }
+}
+
+@media (min-width:992px){
+    .section{
+        overflow-x: hidden;
+        &-m{
+            padding: 80px 0;
+        }
+        &-l{
+            padding: 120px 0;
+        }
+        &-head{
+            padding-bottom: 70px;
+        }
+    
+        &-subhead{
+            padding-bottom: 50px;
+        }
+    
+        &-actions{
+            padding-top: 60px;
+        }
+    
+        &-cta{
+            margin-top: 90px;
+            
+            &-boxed{
+                padding: 2rem;
+            }
+        }
+    }
+}
+/** 06.3 Navbar */
+.nk-navbar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 0;
+    z-index: 999;
+    background-color: transparent;
+    transition: all .4s;
+    &.has-fixed{
+        position: fixed;
+        padding: 15px 0;
+        box-shadow: 0px 5px 40px 0px rgba($base-color, 0.08);
+        &.is-light{
+            background-color: $white;
+            .logo{
+                &-dark{
+                    display: block;
+                }
+                &-light{
+                    display: none;
+                }
+            }
+        }
+    }
+    &-wrap{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 -15px;
+        > *{
+            padding: 0 15px;
+        }
+    }
+    &-menu{
+        position: fixed;
+        background-color: $white;
+        min-height: 100vh;
+        max-height: 100vh;
+        width: 260px;
+        top: 0;
+        left: 0;
+        padding: 1.5rem 1.5rem;
+        box-shadow: 0px 5px 40px 0px rgba($base-color, 0.08);
+        transform: translateX(-100%);
+        z-index: 888;
+        overflow: auto;
+        &.menu-open{
+            transform: none;
+        }
+        &.mobile-menu{
+            transition: transform .4s ease;
+        }
+        + .navbar-overlay{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 777;
+            background: rgba($bg-accent-dark, 0.8);
+        }
+    }
+    &-toggle{
+        margin-right: -0.5rem;
+        z-index: 1000;
+        .toggle{
+            padding: 0.5rem;
+            display: flex;
+            color: $base-color;
+            border-radius: 50%;
+            .tc-light &{
+                color: $white;
+            }
+            .icon{
+                &-close{
+                    display: none;
+                }
+            }
+            .has-fixed.is-light &{
+                color: $base-color;
+            }
+            &.active{
+                color: $base-color;
+                background: rgba($white, 0.8);
+                .icon{
+                    &-menu{
+                        display: none;
+                    }
+                    &-close{
+                        display: block;
+                    }
+                }
+            }
+        }
+        .icon{
+            font-size: 1.25rem;
+        }
+    }
+}
+@media (min-width:992px){
+    .nk-navbar{
+        &-menu{
+            position: static;
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            min-height: auto;
+            width: auto;
+            box-shadow: none;
+            padding: 0;
+            transform: none;
+            overflow: visible;
+            flex-grow: 1;
+            justify-content: flex-end;
+            &-between{
+                justify-content: space-between;
+            }
+        }
+    }
+}
+/** 06.4 Menu */
+.nk-menu{
+    margin: 0 -1.25rem;
+    li{
+        padding: 0 1.25rem;
+        a{
+            display: block;
+            padding: .5rem 0;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            .is-light &{
+                color: $base-color;
+            }
+            &:hover,&.active{
+                color: $theme-accent;
+            }
+        }
+        li a{
+            font-size: .875rem;
+            .is-light &{
+                color: $base-text;
+            }
+            &:hover,&.active{
+                color: $theme-accent;
+            }
+        }
+    }
+    &-sub{
+        margin-left: -.5rem;
+        margin-right: -.5rem;
+    }
+    &-dropdown{
+        display: none;
+    }
+    &-btns{
+        padding: 1rem 0 0;
+    }
+}
+
+@media (min-width:992px){
+    .nk-menu{
+        display: flex;
+        align-items: center;
+        margin: 0 -1.25rem;
+        li{
+            position: relative;
+            padding: 0 1.25rem;
+            a{
+                padding: .5rem 0;
+                font-size: 0.9375rem;
+                color: $base-color;
+                &:hover,&.active{
+                    color: $theme-accent;
+                }
+                .tc-light &{
+                    color: $white;
+                    &:hover,&.active{
+                        color: $theme-accent;
+                    }
+                }
+                .is-light.has-fixed &{
+                    color: $base-color;
+                    &:hover,&.active{
+                        color: $theme-accent;
+                    }
+                }
+            }
+            &:hover{
+                .nk-menu-dropdown{
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(8px);
+                }
+            }
+        }
+        &-dropdown{
+            position: absolute;
+            left: 0;
+            top: 100%;
+            border-radius: 4px;
+            background-color: $white;
+            box-shadow: 0 3px 12px 0 rgba(18,24,58,0.08);
+            min-width: 180px;
+            padding: 12px 6px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s;
+            display: block;
+        }
+        &-btns{
+            display: flex;
+            align-items: center;
+            padding: 0 0 0 2.25rem;
+        }
+    }
+    .nk-navbar-menu-between{
+        .nk-menu{
+            margin: 0;
+        }
+    }
+}
+@media (min-width:992px) and (max-width:1199px){
+    .nk-menu{
+        margin: 0 -.75rem;
+        li{
+            padding: 0 .75rem;
+        }
+        &-btns{
+            padding: 0 0 0 1.25rem;
+        }
+    }
+}
+
+/** 06.5 Page */
+
+.nk-page{
+    &-head{
+        padding-top: 5.5rem;
+        overflow: hidden;
+        &-wrap{
+            position: relative;
+        }
+        &-image{
+            display: none;
+            width: 260px;
+            max-width: 100%;
+            align-self: flex-end;
+        }
+        &-text{
+            padding:.5rem 0 2rem;
+            .subtitle{
+                text-transform: uppercase;
+                color: $theme-accent;
+                font-size: 12px;
+                margin-bottom: .125rem;
+                letter-spacing: 0.04em;
+            }
+            .title{
+                text-transform: uppercase;
+                + p{
+                    padding-top: .6875rem;
+                }
+            }
+        }
+    }
+}
+@media (min-width:576px){
+    .nk-page{
+        &-head{
+            &-text{
+                padding:1.5rem 0 3rem;
+                .subtitle{
+                    font-size: 1.125rem;
+                    margin-bottom: .125rem;
+                    letter-spacing: 0.1em;
+                }
+                .title{
+                    + p{
+                        padding-top: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:992px){
+    .nk-page{
+        &-head{
+            &-wrap{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            &-image{
+                display: block;
+            }
+        }
+    }
+}
+/** 06.5 Footer */
+.nk-footer{
+    &-top{
+        padding-bottom: 2.75rem;
+    }
+    &-bottom{
+        padding-top:1rem;
+        border-top: 1px solid $border-light;
+    }
+    &-links{
+        display: flex;
+        align-items: center;
+        margin: 0 -1rem;
+        li{
+            position: relative;
+            padding: 0 1rem;
+            &:not(:last-child):after{
+                content:'';
+                position: absolute;
+                right: -1px;
+                height: 8px;
+                width: 1px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: $base-color;
+                .tc-light &{
+                    background-color: $base-light;
+                }
+            }
+            a{
+                display: block;
+                font-size: .875rem;
+                color: $base-color;
+                padding: .5rem 0;
+                &:hover{
+                    color: $theme-accent;
+                }
+                .tc-light &{
+                    color: $base-light;
+                    &:hover{
+                        color: $theme-accent;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width:576px){
+    .nk-footer{
+        &-top{
+            padding-bottom: 3.75rem;
+        }
+    }
+}
