@@ -40,7 +40,7 @@
   <div id="login">
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
-    <form action="createAccount.php" method="post">
+    <form action="createAccount.php" method="post" enctype="multipart/form-data">
     <h1>Create Account</h1>
       <fieldset>
           <!-- One "tab" for each step in the form: -->
@@ -55,8 +55,8 @@
               <p><input placeholder="Last name" oninput="this.className = ''" name="lname" type="text"></p>
 
               <span style="color: #F86168; font-size: 12px">
-                        <?php if (isset($_GET['error-captcha'])) { ?>
-                        <?=htmlspecialchars($_GET['error-captcha'])?>
+                        <?php if (isset($_GET['error'])) { ?>
+                        <?=htmlspecialchars($_GET['error'])?>
                         <?php } ?>
               </span>   
 
@@ -82,7 +82,7 @@
           <!-- 3 Birthday and gender -->
           <div class="tab">Birthday:
               <p>
-                <input oninput="this.className = ''" name="dd" type="date">
+                <input oninput="this.className = ''" name="birthday" type="date">
               </p>
               Gender:
               <p>
@@ -383,7 +383,7 @@
                 <button class="file-upload-btn" type="button" onclick="$('.frontfile-upload-input').trigger( 'click' )">Select Picture</button>
                 <p style="font-size: 10px;">Please upload a decent photo, This will go under verification.</p>  
                 <div class="frontimage-upload-wrap">
-                        <input id='front_card' class="frontfile-upload-input" type='file' name="card_front" onchange="frontreadURL(this);"  accept="image/*" />
+                        <input id='front_card' class="frontfile-upload-input" type='file' name="card_front" onchange="frontreadURL(this);"  accept=".png, .jpg, .jpeg" />
                       <div class="frontdrag-text">
                           <h3>Upload Vaccination Card (Front)</h3>
                       </div>
@@ -404,7 +404,7 @@
                 <button class="file-upload-btn" type="button" onclick="$('.backfile-upload-input').trigger( 'click' )">Select Picture</button>
                 <p style="font-size: 10px;">Please upload a decent photo, This will go under verification.</p>  
                 <div class="backimage-upload-wrap">
-                        <input id='bacl_card' class="backfile-upload-input" type='file' name="back_card" onchange="backreadURL(this);" accept="image/*" />
+                        <input id='back_card' class="backfile-upload-input" type='file' name="card_back" onchange="backreadURL(this);" accept=".png, .jpg, .jpeg" />
                       <div class="drag-text">
                           <h3>Upload Vaccination Card (Back)</h3>
                       </div>
@@ -425,7 +425,7 @@
                 <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Select Picture</button>
                 <p style="font-size: 10px;">Please upload a decent photo, This will go under verification.</p>   
                 <div class="image-upload-wrap">
-                        <input id='avatar' class="file-upload-input" type='file' name="avatar" onchange="readURL(this);" accept="image/*" />
+                        <input id='avatar' class="file-upload-input" type='file' name="avatar" onchange="readURL(this);" accept=".png, .jpg, .jpeg" />
                       <div class="drag-text">
                           <h3>Upload a Photo</h3>
                       </div>
@@ -446,7 +446,7 @@
               <p><input placeholder="Password" oninput="this.className = ''" name="pword" type="password"></p>
               <p><input placeholder="Confirm Password" oninput="this.className = ''" name="cpword" type="password"></p>              
           </div>
-          <!-- 10 password -->       
+          <!-- 10 Captcha -->       
           <div class="tab">  
               <p style="font-size: 15px !important;">Solving Re-Captcha means you agree to our <a href="/terms" style="color: #4B6691; font-size: 15px !important;" target="_blank">Terms</a> and <a style="color: #4B6691; font-size: 15px !important;" href="/policy" target="_blank">Policy</a>.</p>                   
               <p>
