@@ -1,2 +1,2 @@
 # proteksyon
-Virtual Vaccination ID and Contact Tracing
+Virtual Vaccination Card and Contact Tracing with QR Verification System
