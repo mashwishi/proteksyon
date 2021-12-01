@@ -12,9 +12,11 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").style.display = "none";
     document.getElementById("nextBtn").innerHTML = "<i class='fas fa-user-plus'></i>";
   } else {
     document.getElementById("nextBtn").innerHTML = "<i class='fas fa-arrow-right'></i>";
+    document.getElementById("nextBtn").style.display = "inline";
   }
   //... and run a function that will display the correct step indicator:
   fixStepIndicator(n)
@@ -25,6 +27,9 @@ function nextPrev(n) {
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) return false;
+
+  console.log('Current Tab:' + currentTab + ' | Total:' + x.length + '\n');
+
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:

@@ -33,7 +33,7 @@
 
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
-    <form action="auth.php" method="post">
+    <form action="authLogin.php" method="post">
     <h1>Login Account</h1>
       <fieldset>
 

@@ -1,4 +1,3 @@
-/*! Kovid19 v1.1.2 by Softnio. **/
 jQuery(function () {
     "use strict";
 

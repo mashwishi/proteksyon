@@ -40,7 +40,7 @@
   <div id="login">
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
-    <form action="new.php" method="post">
+    <form action="createAccount.php" method="post">
     <h1>Create Account</h1>
       <fieldset>
           <!-- One "tab" for each step in the form: -->
@@ -53,6 +53,18 @@
               <p><input placeholder="Middle name" oninput="this.className = ''" name="mname" type="text"></p>
               Last Name:
               <p><input placeholder="Last name" oninput="this.className = ''" name="lname" type="text"></p>
+
+              <span style="color: #F86168; font-size: 12px">
+                        <?php if (isset($_GET['error-captcha'])) { ?>
+                        <?=htmlspecialchars($_GET['error-captcha'])?>
+                        <?php } ?>
+              </span>   
+
+              <span style="color: #00C122; font-size: 12px">
+                        <?php if (isset($_GET['success'])) { ?>
+                        <?=htmlspecialchars($_GET['success'])?>
+                        <?php } ?>
+              </span>                 
           </div>
           <!-- 2 Email and Contact -->
           <div class="tab">
@@ -434,14 +446,27 @@
               <p><input placeholder="Password" oninput="this.className = ''" name="pword" type="password"></p>
               <p><input placeholder="Confirm Password" oninput="this.className = ''" name="cpword" type="password"></p>              
           </div>
+          <!-- 10 password -->       
+          <div class="tab">  
+              <p style="font-size: 15px !important;">Solving Re-Captcha means you agree to our <a href="/terms" style="color: #4B6691; font-size: 15px !important;" target="_blank">Terms</a> and <a style="color: #4B6691; font-size: 15px !important;" href="/policy" target="_blank">Policy</a>.</p>                   
+              <p>
+              <div style="margin-top: 3%;" class="h-captcha" data-sitekey="<?php echo $hcaptcha_sitekey ?>"></div>
+              <p style="font-size: 10px !important;">
+              Make sure to solve captcha correctly or the register process will reset.
+              This site is protected by <a href="https://hCaptcha.com/?r=aebb987153ce" style="color: #4B6691; font-size: 10px !important;" target="_blank">hCaptcha</a> to avoid spam and bot registration.
+              </p>                   
+              <p><input class="submit" style="margin-top: 3%;" type="submit" name="register" value="Register"></p>
+              </p>
+          </div>          
           <div style="overflow:auto;">
               <div style="float:right;">
               <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class='fas fa-arrow-left'></i></button>
               <button type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fas fa-arrow-right"></i></button>
               </div>
-          </div>
+          </div>        
           <!-- Circles which indicates the steps of the form: -->
           <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>          
               <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>
