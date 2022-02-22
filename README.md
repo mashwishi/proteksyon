@@ -11,5 +11,5 @@ Multi-Platform Contact Tracing with QR Verification System for Barangay Sabang
 - JOHN MICHAEL DENISA
 - MATHEW AGUSTIN BELLA
 
-<b>Google Drive:</b><br/>
-https://drive.google.com/drive/u/5/folders/1Z32Cl4CVqhLJhKQ6q4S5FOub6E5r2nEc
+<b>Website URL:</b><br/>
+To be set-up
