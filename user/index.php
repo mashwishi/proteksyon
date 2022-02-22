@@ -7,8 +7,20 @@
   $user_id = $_SESSION['user_id'];
   $user_uuid = $_SESSION['user_uuid'];
   $user_avatar =  $_SESSION['user_avatar'];
+
+  $user_first_name = $_SESSION['user_first_name'];
+  $user_middle_name = $_SESSION['user_middle_name'];
+  $user_last_name = $_SESSION['user_last_name'];
+
+  $user_gender = $_SESSION['user_gender'];
+  $user_birthday = $_SESSION['user_birthday'];
+
+  $user_country = $_SESSION['user_country'];
+  $user_city = $_SESSION['user_city'];
+  $user_address = $_SESSION['user_address'];
+
+  $user_contactno = $_SESSION['user_contactno'];
 ?>
-<!D
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -30,105 +42,301 @@
 
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
-    <!-- Site Title  -->
-    <title>Proteksyon | User </title>
-    <link rel="stylesheet" href="./assets/css/user.css">
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
-      integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
-      crossorigin="anonymous"
-    />  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script> 
-    <script type="text/javascript">
-      window.onload = function () {
-          var qrcode = new QRCode(document.getElementById("qrcode"), {
-              width: 200,
-              height: 200,
-              colorDark : "#80A6FF",
-              colorLight : "#ffffff",
-          });
+    <title></title>
 
-          function makeCode() {
-              var elText = '<?php echo $user_uuid; ?>';
-              console.log("Calculare QR");
-              qrcode.makeCode(elText);
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.1/tailwind.min.css">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <!-- Java Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>-->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
+    <script src="./assets/js/html2canvas.min.js"></script>
+
+    <script type="text/javascript">   
+
+      $(document).ready(function(){        
+        var mobile = document.getElementById("mobile");
+        var desktop = document.getElementById("desktop");
+        var home = document.getElementById("Home");
+        
+          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            mobile.style.display = "block";
+            desktop.style.display = "none";
+            mobile.style.display = "block";
+
+            load_user_data();
+            function load_user_data(query)
+            {
+              $.ajax({
+                url:"./fetch/user_fetch.php",
+                method:"post",
+                data:{query:query},
+                success:function(data)
+                {
+                  $('#profile').html(data);
+                }
+              });
+            }
+
+            load_status_data();
+            function load_status_data(query)
+            {
+              $.ajax({
+                url:"./fetch/status_fetch.php",
+                method:"post",
+                data:{query:query},
+                success:function(data)
+                {
+                  $('#Default').html(data);
+                  $('#Home').html(data);
+                }
+              });
+            }  
+
+            load_logs_data();
+            function load_logs_data(query)
+            {
+              $.ajax({
+                url:"./fetch/logs_fetch.php",
+                method:"post",
+                data:{query:query},
+                success:function(data)
+                {
+                  $('#Log').html(data);
+                }
+              });
+            }        
+            
+            load_card_data();
+            function load_card_data(query)
+            {
+              $.ajax({
+                url:"./fetch/card_fetch.php",
+                method:"post",
+                data:{query:query},
+                success:function(data)
+                {
+                  $('#card-details').html(data);
+                }
+              });
+            }              
+
           }
-          makeCode();
+          else{
+            mobile.style.display = "none";
+            home.style.display = "none";
+            desktop.style.display = "desktop";
+          }
+          
+      }); 
+
+      window.onload = function () {      
+          function generateQRCode() {
+                let UUID = '<?php echo $user_uuid; ?>';
+                if (UUID) {
+                  let qrcodeContainer = document.getElementById("qrcode");
+                  qrcodeContainer.innerHTML = "";
+                  new QRCode(qrcodeContainer, UUID);
+                  document.getElementById("qrcode-container").style.display = "block";
+
+                  let xqrcodeContainer = document.getElementById("xqrcode");
+                  xqrcodeContainer.innerHTML = "";
+                  new QRCode(xqrcodeContainer, {
+                    text: UUID,
+                    width: 150,
+                    height: 150,
+                    colorDark: "#1B1B1B",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                  });
+                  document.getElementById("xqrcode-container").style.display = "block";    
+                  
+                  
+
+
+                }
+                else {
+                 //
+                }
+          }       
+          generateQRCode();
       };
-    </script>        
+
+    </script>   
+
   </head>
   <body>
-    <div id="qrcode"></div>
-    <?php echo $user_id; ?>
-    <?php echo $user_uuid; ?>
+    <div id="desktop"> 
+      <div class="not-mobile"> 
+          <p class="not-supported">
+            <i class='fa fa-mobile fa-2x' style='color:#b5b4b0; margin-bottom: 15px;'></i>
+            <br/> 
+            Website application only support 
+            <br/>
+            mobile and tablet devices.
+            <br/>
+            <a href="logout" class="btn not-supported-logout-btn">Logout</a>
+          </p>
+      </div>
+    </div>
 
-      <nav class="amazing-tabs">
-      <div class="filters-container">
-        <div class="filters-wrapper">
-          <ul class="filter-tabs">
-            <li>
-              <button class="filter-button filter-active" data-translate-value="0">
-                Profile
-              </button>
-            </li>
-            <li>
-              <button class="filter-button" data-translate-value="100%">
-                Vaccination
-              </button>
-            </li>
-            <li>
-              <button class="filter-button" data-translate-value="200%">
-                <a class="logout-btn" href="/user/logout">Logout</a>
-              </button>
-            </li>
-          </ul>
-          <div class="filter-slider" aria-hidden="true">
-            <div class="filter-slider-rect">&nbsp;</div>
+    <div id="mobile"> 
+    <!-- download pwa -->      
+    <div class="add-to" style="background-color: #1965FF; color: white; font-size: 12px; display: flex;align-items: center; justify-content: center; padding: 12px 0px 12px 0px;">
+      <center>    
+          <button class="add-to-btn"><i class="fas fa-download"></i>&nbsp; Install Application on your Mobile Device</button>
+      </center>
+    </div> 
+
+      <!-- profile header -->
+      <header> 
+        <div class="container">
+          <div class="profile" id="profile">
+          <div class="loader" id="loader"></div>
+          </div>          
+        </div>
+      </header> 
+
+      <!-- default --> 
+      <div id="Default" style="display: block;" class="tabcontent">   
+      <div class="loader" id="loader"></div>
+      </div>
+
+      <!-- home --> 
+      <div id="Home" class="tabcontent">
+        <div class="container">
+        </div>      
+      </div>
+      <!-- qr -->
+      <div id="QR" class="tabcontent">
+        <div class="container">
+          <!-- <p style="font-size: 12px; text-align: center;">Do not share your qr code on social media.</p> <div id="qrcode"></div>-->
+          <div style="max-width: 400px; margin: 0 auto; padding: 20px;">
+              <p class="qrcode-msg" style="font-size: 10px">Use this QR for contact tracing only, <br/> Do not share or upload your QR on social media.</p>
+                <div id="qrcode-container">
+                  <div id="qrcode" class="qrcode"></div>
+                </div>
+              <p class="qrcode-msg" style="font-size: 30px">SCAN ME</p>
           </div>
+        
+        </div>      
+      </div>
+      <!-- log -->
+      <div id="Log" class="tabcontent">
+        <div class="container">
+        Log
+        </div>      
+      </div>
+      <!-- card -->
+      <div id="Card" class="tabcontent">
+        <div class="container">
+                <div id="userID" style="border-color: #000 !important; box-shadow: 0 4px 8px 0 rgb(0 0 0 / 48%) !important; max-width: 300px  !important; margin: auto  !important; text-align: center  !important; font-family: arial  !important; border-style: dotted !important; border-width: thin  !important;">
+                    <div id="xqrcode-container">
+                      <div id="xqrcode" class="xqrcode">                  
+                      </div>
+                    </div>                  
+                  <div id="card-details"></div>
+                </div>                                  
+
+                <div class="row">
+                  <button id="downloadCardID" style="font-size: 15px; font-weight: 800; text-align: center !important; text-decoration: none; justify-content: center; align-items: center; margin-bottom: 5%; margin-top: 5%; margin-left: auto; margin-right: auto;  display: inline-block !important;  padding: 5px 28px !important;  color: black !important;  background-color: white !important;  border: 0.1rem solid #dbdbdb !important; width: 85%;">
+                        Download
+                  </button>  
+                  <script type="text/javascript">
+                      document.getElementById("downloadCardID").addEventListener("click", function() {
+                        html2canvas(document.getElementById("userID")).then(function (canvas) {
+                          var anchorTag = document.createElement("a");
+                            document.body.appendChild(anchorTag);
+                            //<div id="previewImg"></div>    
+                            //document.getElementById("previewImg").appendChild(canvas);
+                            anchorTag.download = "proteksyon_id.jpg";
+                            anchorTag.href = canvas.toDataURL();
+                            anchorTag.target = '_blank';
+                            anchorTag.click();
+                          });
+                      });                      
+                  </script>
+                </div>                
+        </div>      
+      </div>    
+
+      <!-- user menu -->
+      <div class="menu">
+        <div class="tab">
+          <div class="row">
+            <div class="col">
+              <button class="tablinks active" onclick="openCity(event, 'Home')"><i class="fas fa-home"></i><br/><span style="font-size: 7px">HOME</span></button>
+            </div>
+            <div class="col">
+              <button class="tablinks" onclick="openCity(event, 'QR')"><i class="fas fa-qrcode"></i><br/><span style="font-size: 7px">QR</span></button>
+            </div>
+            <div class="col">
+              <button class="tablinks" onclick="openCity(event, 'Log')"><i class="fas fa-list"></i><br/><span style="font-size: 7px">LOG</span></button>
+            </div>
+            <div class="col">
+              <button class="tablinks" onclick="openCity(event, 'Card')"><i class="far fa-address-card"></i><br/><span style="font-size: 7px">CARD</span></button>
+            </div>
+          </div>        
+          
+          
         </div>
       </div>
-      <div class="main-tabs-container">
-        <div class="main-tabs-wrapper">
-          <ul class="main-tabs">
-            <li>
-              <button class="round-button" data-translate-value="0" data-color="red">
-                <span class="avatar">
-                  <?php echo '<img src="data:image/png;base64,'.base64_encode($user_avatar).'"/>' ?>                  
-                </span>
-              </button>
-            </li>
-            <li>
-              <button class="round-button active gallery" style="--round-button-active-color: #ff6d00" data-translate-value="400%" data-color="orange">
-              <i style="z-index: -1;" class="fas fa-cog fa-2x"></i>
-              </button>
-            </li>
-            <li>
-              <button class="round-button " style="--round-button-active-color: #00c853" data-translate-value="200%" data-color="green">
-              <i style="z-index: -1;" class="fas fa-qrcode fa-2x"></i>
-              </button>
-            </li>
-            <li>
-              <button class="round-button" style="--round-button-active-color: #2962ff" data-translate-value="100%" data-color="blue">
-              <i style="z-index: -1;" class="fas fa-id-card fa-2x"></i>
-              </button>              
-            </li>
-            <li>
-              <button class="round-button" style="--round-button-active-color: #aa00ff" data-translate-value="300%" data-color="purple">
-              <i style="z-index: -1;" class="far fa-map  fa-2x"></i>
-              </button>
-            </li>
-          </ul>
-          <div class="main-slider" aria-hidden="true">
-            <div class="main-slider-circle">&nbsp;</div>
-          </div>
-        </div>
-      </div>
-    </nav>
 
-    <script src="./assets/css/user_script.js"></script>
+    </div>    
+    
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('../sw.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
 
+      let deferredPrompt;
+      var div = document.querySelector('.add-to');
+      var button = document.querySelector('.add-to-btn');
+      div.style.display = 'none';
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        div.style.display = 'block';
+
+        button.addEventListener('click', (e) => {
+        // hide our user interface that shows our A2HS button
+        div.style.display = 'none';
+        // Show the prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice
+          .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+          });
+      });
+      });
+
+    </script>
+    
   </body>
 </html>
 <?php 

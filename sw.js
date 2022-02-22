@@ -16,8 +16,8 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', async e => {
-  const req = e.request;
-  const url = new URL(req.url);
+ const req = e.request;
+const url = new URL(req.url);
 
   if (url.origin === location.origin) {
     e.respondWith(cacheFirst(req));
@@ -25,6 +25,7 @@ self.addEventListener('fetch', async e => {
     e.respondWith(networkAndCache(req));
   }
 });
+//self.addEventListener('fetch', function(event) {});
 
 async function cacheFirst(req) {
   const cache = await caches.open(cacheName);

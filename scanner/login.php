@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_email'])) { 
+  if (!isset($_SESSION['provider_id']) && !isset($_SESSION['provider_email'])) { 
     $hcaptcha_sitekey = 'aaeec26b-2021-48e7-abd5-00c294ecfccd';
 ?>
 <html lang="en">
@@ -21,12 +21,13 @@
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-192x192.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-384x384.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-512x512.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
     <!-- Site Title  -->
-    <title>Proteksyon | User Login</title>
-    <link rel="stylesheet" href="./assets/css/user_login.css">
+    <title>Proteksyon | Scanner Login</title>
+    <link rel="stylesheet" href="./assets/css/scanner_login.css">
 
     <script type="text/javascript">
       window.addEventListener('load', () => {
@@ -49,7 +50,7 @@
 
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
-    <form action="authLogin.php" method="post">
+    <form action="authScanner.php" method="post">
     <h1>Login Account</h1>
       <fieldset>
 
@@ -58,11 +59,11 @@
             <input 
                 type="email" 
                 required
-                value="mashwishi@gmail.com"
+                value="clinic@sabang.ph"
                 autocomplete="off"
-                name="email" 
+                name="scanner_email" 
                 placeholder="Email Address"
-                value="mashwishi@gmail.com"
+                value="clinic@sabang.ph"
             >
         </p>
 
@@ -72,7 +73,7 @@
                 required 
                 value="admin" 
                 autocomplete="off"
-                name="password" 
+                name="scanner_password" 
                 placeholder="Password"
             >
             <p><a href="/password-reset">Forgot Password?</a></p>
@@ -101,9 +102,9 @@
     </form>
 
     <p>
-        <a href="/scanner">
-            <span class="map-before"><span class="fontawesome-map-marker"></span></span>
-            <button class="map">Login as Scanner</button>
+        <a href="/user">
+            <i class="fas fa-user map-before"></i>
+            <button class="map">Login as User</button>
         </a>
     </p>
 
@@ -114,6 +115,6 @@
 </html>
 <?php 
 }else {
-   header("Location: /user");
+   header("Location: /scanner");
 }
  ?>

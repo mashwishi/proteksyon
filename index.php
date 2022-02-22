@@ -32,19 +32,31 @@
       crossorigin="anonymous"
     />
     <script>
-        window.addEventListener('load', () => {
-        registerSW();
-        });
+
+    deviceCheck();
+
+    function deviceCheck() {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+        {  
+                window.location.href = '/user';
+        }
+        else     
+        {
+            window.addEventListener('load', () => {
+                registerSW();      
+            });   
+        }  
+    }             
     
-        async function registerSW() {
-            if ('serviceWorker' in navigator) {
-                try {
-                await navigator.serviceWorker.register('./sw.js');
-                } catch (e) {
-                console.log(`SW registration failed`);
-                }
+    async function registerSW() {
+        if ('serviceWorker' in navigator) {
+            try {
+            await navigator.serviceWorker.register('./sw.js');
+            } catch (e) {
+            console.log(`SW registration failed`);
             }
         }
+    }     
     </script>    
 </head>
 

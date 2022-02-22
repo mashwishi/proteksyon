@@ -34,6 +34,21 @@
       crossorigin="anonymous"
     />    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('load', () => {
+          registerSW();      
+      });
+
+      async function registerSW() {
+          if ('serviceWorker' in navigator) {
+              try {
+              await navigator.serviceWorker.register('../sw.js');
+              } catch (e) {
+              console.log(`SW registration failed`);
+              }
+          }
+      }     
+    </script>
   </head>
   <body>
 
