@@ -31,6 +31,11 @@
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />
+    <!--
+    -->
+	<style>
+        img[alt*="www.000webhost.com"] { display: none!important; }
+    </style>
     <script>
 
     deviceCheck();

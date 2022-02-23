@@ -2,7 +2,7 @@
     session_start();
 
     $user_id = $_SESSION['user_id'];
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("remotemysql.com", "C9eA1TETBR", "OdvWFvKWBw", "C9eA1TETBR");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_id = $user_id";

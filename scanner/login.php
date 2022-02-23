@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="apple-mobile-web-app-status-bar" content="#db4938">
     <meta name="theme-color" content="#db4938">
-    <link rel="manifest" href="../manifest.json">
+    <link rel="manifest" href="../manifest.webmanifest">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-72x72.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-96x96.png">

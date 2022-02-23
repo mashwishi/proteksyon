@@ -2,7 +2,7 @@
     session_start();
 
     $provider_id = $_SESSION['provider_id'];
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("remotemysql.com", "C9eA1TETBR", "OdvWFvKWBw", "C9eA1TETBR");
     $output = '';
 
     $query = "SELECT * FROM provider_tb where provider_id = $provider_id";

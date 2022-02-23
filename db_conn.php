@@ -1,9 +1,9 @@
 <?php 
 
-$sName = "localhost";
-$uName = "root";
-$pass = "";
-$db_name = "proteksyon";
+$sName = "remotemysql.com";
+$uName = "C9eA1TETBR";
+$pass = "OdvWFvKWBw";
+$db_name = "C9eA1TETBR";
 
 #$sName = "sql205.epizy.com";
 #$uName = "epiz_30455431";
