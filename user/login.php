@@ -58,11 +58,9 @@
             <input 
                 type="email" 
                 required
-                value="mashwishi@gmail.com"
                 autocomplete="off"
                 name="email" 
                 placeholder="Email Address"
-                value="mashwishi@gmail.com"
             >
         </p>
 
@@ -70,7 +68,6 @@
             <input
                 type="password" 
                 required 
-                value="admin" 
                 autocomplete="off"
                 name="password" 
                 placeholder="Password"

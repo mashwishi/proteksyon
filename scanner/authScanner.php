@@ -23,9 +23,8 @@ if (isset($_POST['scanner_email']) && isset($_POST['scanner_password'])) {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$response = curl_exec($ch);
-			$responseData = json_decode($response);
-			//temporary disable			
-			//if($responseData->success) {
+			$responseData = json_decode($response);	
+			if($responseData->success) {
 				$stmt = $conn->prepare("SELECT * FROM provider_tb WHERE provider_email=?");
 				$stmt->execute([$pemail]);
 		
@@ -96,10 +95,10 @@ if (isset($_POST['scanner_email']) && isset($_POST['scanner_password'])) {
 				}else {
 					header("Location: /scanner/login?error-email=Account doesn't exist, Create an account.&email=$pemail");
 				}
-			//}
-			//else {
-			//	header("Location: /user/login?error-captcha=Captcha failed, please try again.");
-			//}
+			}
+			else {
+				header("Location: /user/login?error-captcha=Captcha failed, please try again.");
+			}
 		}
 		
 

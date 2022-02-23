@@ -59,11 +59,9 @@
             <input 
                 type="email" 
                 required
-                value="clinic@sabang.ph"
                 autocomplete="off"
                 name="scanner_email" 
                 placeholder="Email Address"
-                value="clinic@sabang.ph"
             >
         </p>
 
@@ -71,7 +69,6 @@
             <input
                 type="password" 
                 required 
-                value="admin" 
                 autocomplete="off"
                 name="scanner_password" 
                 placeholder="Password"
