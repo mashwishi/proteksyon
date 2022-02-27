@@ -11,16 +11,23 @@
     <meta name="description" content="">
     <meta name="apple-mobile-web-app-status-bar" content="#db4938">
     <meta name="theme-color" content="#db4938">
-    <link rel="manifest" href="../manifest.webmanifest">
+    <link rel="manifest" href="../manifest.json">
+    
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="../assets/images/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="../assets/images/icons/icon-96x96.png">
-    <link rel="apple-touch-icon" href="../assets/images/icons/icon-128x128.png">
-    <link rel="apple-touch-icon" href="../assets/images/icons/icon-144x144.png">
-    <link rel="apple-touch-icon" href="../assets/images/icons/icon-152x152.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="../assets/images/icons/icon-256x256.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-384x384.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-512x512.png">
+    <link href="../assets/images/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="../assets/images/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
 
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
@@ -33,9 +40,6 @@
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />    
-    <style>
-        img[alt*="www.000webhost.com"] { display: none!important; }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
       window.addEventListener('load', () => {
@@ -52,6 +56,9 @@
           }
       }     
     </script>
+    	<style>
+        img[alt*="www.000webhost.com"] { display: none!important; }
+    </style>    
   </head>
   <body>
 
@@ -388,9 +395,9 @@
               Dose:
               <p>
                 <select name="dose" id='dose' onclick="this.className = ''">
-                  <option value="Male">First Dose</option>
-                  <option value="Female">Second Dose</option>
-                  <option value="Female">Booster Dose</option>
+                  <option value="First Dose">First Dose</option>
+                  <option value="Second Dose">Second Dose</option>
+                  <option value="Booster Dose">Booster Dose</option>
                 </select>  
               </p>            
           </div>   
@@ -495,8 +502,17 @@
               <span class="step"></span>
               <span class="step"></span>                                                                                                                
           </div>
-      </fieldset>        
+      </fieldset>  
     </form>
+
+
+    <div style="display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0px 8px 0px;"> 
+    <p>Have an account? <a href="/user/login">Login Account</a>.</p> 
+    </div> 
+
   
   </div>
 

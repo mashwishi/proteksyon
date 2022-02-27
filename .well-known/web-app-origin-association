@@ -1,7 +1,7 @@
 {
   "web_apps": [
     {
-      "manifest": "http://localhost/manifest.webmanifest",
+      "manifest": "http://localhost/manifest.json",
       "details": {
         "paths": ["/*"]
       }

@@ -15,23 +15,9 @@ include '../db_conn.php';
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($ch);                
             $responseData = json_decode($response);
-            if($responseData->success) {
 
-                //Check if email already exist
-				$stmta = $conn->prepare("SELECT * FROM users_tb WHERE user_email=?");
-				$stmta->execute([$user_email]);
-				if ($stmta->rowCount() === 1) {
-                    header("Location: /user/register?error=Email address already exist characters&email=$email");
-                }
-                //Check if username already used
-				$stmtb = $conn->prepare("SELECT * FROM users_tb WHERE user_contactno=?");
-				$stmtb->execute([$user_contactno]);
-				if ($stmtb->rowCount() === 1) {
-                    header("Location: /user/register?error=Mobile number already exist! characters&email=$email");
-                }  
-                
-                //Register if success
-                else{
+            //Register if success captcha
+            if($responseData->success) {
                     //Name
                     $fname = $_POST['fname'];
                     $mname = $_POST['mname'];
@@ -69,58 +55,72 @@ include '../db_conn.php';
 
                     //UUID
                     $uuid = '0x' . md5($email);
-                    //Date Today for accoutn creation date
-                    $date_today = date("Y-m-d");
 
-                    $sql = "
-                    INSERT INTO 
-                    users_tb(
-                    user_uuid,user_email,user_password,user_contactno,user_avatar,
-                    user_first_name,user_middle_name,user_last_name,user_birthday,
-                    user_gender, user_country, user_zipcode, user_city, user_address,
-                    user_card_front, user_card_back, user_vaccine, user_dose, user_created
-                    )
-                    VALUES( 
-                        '','$email', '$encrypt_password', '$phone', '$xavatar',
-                        '$fname', '$mname', '$lname', '$birthday',
-                        '$gender', '$country', '$zipcode', '$city', '$address',
-                        '$xcard_front', '$xcard_back', '$vaccine', '$dose', '$date_today'
-                    )
-                    ";
-
-                    $statement = $conn->prepare($sql);
-                    $statement->execute([
-                        ':user_uuid' => $uuid,
-                        ':user_email' => $email,
-                        ':user_password' => $encrypt_password,
-                        ':user_contactno' => $phone,
-                        ':user_avatar' => $xavatar,
-                        ':user_first_name' => $fname,
-                        ':user_middle_name' => $mname,
-                        ':user_last_name' => $lname,
-                        ':user_birthday' => $birthday,
-                        ':user_gender' => $gender,
-                        ':user_country' => $country,
-                        ':user_zipcode' => $zipcode,
-                        ':user_city' => $city,
-                        ':user_address' => $address,
-                        ':user_card_front' => $xcard_front,
-                        ':user_card_back' => $xcard_back,
-                        ':user_vaccine' => $vaccine,
-                        ':user_dose' => $dose,
-                        ':user_created' => $date_today
-                    ]);
-
-                    // Close DB Connection
-                    //$conn->close();
-
-                    if (!$conn->error) {
-                        header("Location: /user/register?success=Successfully Registered!");
+                    //Check if email already exist
+                    $stmta = $conn->prepare("SELECT * FROM users_tb WHERE user_email=?");
+                    $stmta->execute([$email]);
+                    if ($stmta->rowCount() === 1) {
+                        header("Location: /user/register?error=Email address already exist characters&email=$email");
+                    }                
+                    //if success no same email
+                    else{                        
+                        //Check if phone already used
+                        $stmtb = $conn->prepare("SELECT * FROM users_tb WHERE user_contactno=?");
+                        $stmtb->execute([$phone]);                    
+                        if ($stmtb->rowCount() === 1) {
+                            header("Location: /user/register?error=Mobile number already exist! characters&email=$email");
                         }
-                    else {
-                        header("Location: /user/register?error=Failed to create your account!");
-                    }
-                }        
+                        //if success no same phone
+                        else{
+                            $sql = "
+                            INSERT INTO 
+                            users_tb(
+                            user_uuid,user_email,user_password,user_contactno,user_avatar,
+                            user_first_name,user_middle_name,user_last_name,user_birthday,
+                            user_gender, user_country, user_zipcode, user_city, user_address,
+                            user_card_front, user_card_back, user_vaccine, user_dose
+                            )
+                            VALUES( 
+                                '$uuid','$email', '$encrypt_password', '$phone', '$xavatar',
+                                '$fname', '$mname', '$lname', '$birthday',
+                                '$gender', '$country', '$zipcode', '$city', '$address',
+                                '$xcard_front', '$xcard_back', '$vaccine', '$dose'
+                            )
+                            ";
+                            
+                            $statement = $conn->prepare($sql);
+                            $statement->execute([
+                                ':user_uuid' => $uuid,
+                                ':user_email' => $email,
+                                ':user_password' => $encrypt_password,
+                                ':user_contactno' => $phone,
+                                ':user_avatar' => $xavatar,
+                                ':user_first_name' => $fname,
+                                ':user_middle_name' => $mname,
+                                ':user_last_name' => $lname,
+                                ':user_birthday' => $birthday,
+                                ':user_gender' => $gender,
+                                ':user_country' => $country,
+                                ':user_zipcode' => $zipcode,
+                                ':user_city' => $city,
+                                ':user_address' => $address,
+                                ':user_card_front' => $xcard_front,
+                                ':user_card_back' => $xcard_back,
+                                ':user_vaccine' => $vaccine,
+                                ':user_dose' => $dose
+                            ]);
+        
+                            // Close DB Connection
+                            //$conn->close();
+        
+                            if (!$conn->error) {
+                                header("Location: /user/register?success=Successfully Registered!");
+                                }
+                            else {
+                                header("Location: /user/register?error=Failed to create your account!");
+                            }
+                        }
+                    }        
 
             }
             else{

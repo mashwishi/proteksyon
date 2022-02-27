@@ -3,7 +3,7 @@
 
     $user_id = $_SESSION['user_id'];
 
-    $connect = mysqli_connect("remotemysql.com", "C9eA1TETBR", "OdvWFvKWBw", "C9eA1TETBR");
+    $connect = mysqli_connect("localhost", "id18505495_mashwishi", "Q5]wp17O@/bcjoT~", "id18505495_proteksyon");
     $output = '';
     $query = "SELECT * FROM status_tb";
     $result = mysqli_query($connect, $query);

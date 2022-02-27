@@ -3,7 +3,7 @@
 
     $UUID = isset($_POST["UUID"]) ? $_POST["UUID"] : '';
 
-    $connect = mysqli_connect("remotemysql.com", "C9eA1TETBR", "OdvWFvKWBw", "C9eA1TETBR");
+    $connect = mysqli_connect("localhost", "id18505495_mashwishi", "Q5]wp17O@/bcjoT~", "id18505495_proteksyon");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_uuid = '$UUID'";
@@ -13,8 +13,8 @@
             $output .= '';
             while($row = mysqli_fetch_array($result))
             {                         
-                        $output .= '    
-                        <div class="xcontainer">
+                        $output .= '                           
+                        <div class="xcontainer" id="user_popup_output">
                             <img class="image" src="data:image/png;base64,'. base64_encode($row["user_avatar"]) .'" alt="user_avatar">
                             <div> 
                                 <h2>'. $row["user_first_name"] .' '. $row["user_last_name"] .'</h2>
@@ -23,7 +23,7 @@
                             </div>                     
                         </div>
                         <div class="container-approval"> 
-                            <button id="approve" class="approve-btn btn-success">APPROVE</button>
+                            <button id="approve" onclick="timeIn()" class="approve-btn btn-success">APPROVE</button>
                             <button id="cancel" onclick="scanAgain()" class="cancel-btn btn-danger">CANCEL</button>
                         </div>                                          
                         ';
@@ -33,7 +33,7 @@
         }
         else{
             echo '
-                    <div class="xcontainer">
+                    <div class="xcontainer"  id="user_popup_output">
                     <img class="image" src="./assets/img/avatar/0.png" alt="user_avatar">
                     <div> 
                         <h2>User not found</h2>
