@@ -2,10 +2,10 @@
 session_start();
 include '../db_conn.php';
 
-if (isset($_POST['scanner_email']) && isset($_POST['scanner_password'])) {
+if (isset($_POST['provider_email']) && isset($_POST['provider_password'])) {
 
-		$pemail = strtolower($_POST['scanner_email']);
-		$ppassword = $_POST['scanner_password'];
+		$pemail = strtolower($_POST['provider_email']);
+		$ppassword = $_POST['provider_password'];
 	
 		if (empty($pemail)) {
 			header("Location: login?error-email=Email is empty, please enter your email!");
@@ -86,16 +86,16 @@ if (isset($_POST['scanner_email']) && isset($_POST['scanner_password'])) {
 							//echo "Error updating IP: " . $conn->error;
 							//}
 		
-							header("Location: /scanner/");
+							header("Location: /provider/");
 		
 						}else {
-							header("Location: /scanner/login?error-password=Incorrect password, Please try again!&email=$pemail");
+							header("Location: /provider/login?error-password=Incorrect password, Please try again!&email=$pemail");
 						}
 					}else {
-						header("Location: /scanner/login?error-email=Incorrect email or password, Please try again!&email=$pemail");
+						header("Location: /provider/login?error-email=Incorrect email or password, Please try again!&email=$pemail");
 					}
 				}else {
-					header("Location: /scanner/login?error-email=Account doesn't exist, Create an account.&email=$pemail");
+					header("Location: /provider/login?error-email=Account doesn't exist, Create an account.&email=$pemail");
 				}
 			}
 			else {

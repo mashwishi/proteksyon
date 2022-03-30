@@ -3,7 +3,7 @@
 
     $UUID = isset($_POST["UUID"]) ? $_POST["UUID"] : '';
 
-    $connect = mysqli_connect("localhost", "id18505495_mashwishi", "Q5]wp17O@/bcjoT~", "id18505495_proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_uuid = '$UUID'";
@@ -30,6 +30,8 @@
 
             }
             echo $output;
+            // Close DB Connection
+            $connect -> close();  
         }
         else{
             echo '
@@ -45,5 +47,7 @@
                     <button onclick="scanAgain()" class="scan-again-btn">TRY AGAIN</button>
                     </div>                        
             ';
+            // Close DB Connection
+            $connect -> close();  
         }
 ?>

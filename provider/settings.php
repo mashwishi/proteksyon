@@ -52,64 +52,74 @@
 
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
-	<title>Proteksyon | Provider Dashboard</title>
+	<title>Proteksyon | Provider Settings</title>
 
     <!-- Style Sheets -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/css/dashboard.css">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-
+    <style>
+        .frontpage_square{
+        position:relative;
+        overflow:hidden;
+        padding-bottom: 15%;
+        }
+    </style>
     <!-- Java Scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 	
     <script type="text/javascript">       
-    $(document).ready(function(){   
-		fetch_recent_users();
-		function fetch_recent_users(query)
-		{
-			$.ajax({
-			url:"./fetch/recent_users.php",
-			method:"post",
-			data:{query:query},
-			success:function(data)
-			{
-				$('#recent_users > tbody').html(data);
-			}
-			});
-		} 
+        $(document).ready(function(){ 
+        
+            getSettings();
+            function getSettings(query)
+            {
+                $.ajax({
+                url:"./fetch/settings/getSettings.php",
+                method:"post",
+                data:{query:query},
+                success:function(data)
+                {
+                    $('#infoSettings').html(data);
+                    checkUpdate();
+                }
+                });
+            
+            } 
 
-		fetch_office();
-		function fetch_office(query)
-		{
-			$.ajax({
-				url:"./fetch/office.php",
-				method:"post",
-				data:{query:query},
-				success:function(data)
-				{
-					$('#office_name').html(data);
-				}
-			});
-		} 
+            function checkUpdate()
+            {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const msgUpdateInfo = urlParams.get('updateSettings');
 
-		stats_office();
-		function stats_office(query)
-		{
-			$.ajax({
-				url:"./fetch/stats.php",
-				method:"post",
-				data:{query:query},
-				success:function(data)
-				{
-					$('#stats-office').html(data);
-				}
-			});
-		} 
-    }); 
+                if(msgUpdateInfo == 0){
+                    //Success
+                    $("#alertInformation").html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Your information has been successfully updated.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 1){
+                    //Error not checked
+                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, You must agree to change your information to update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 2){
+                    //Error not checked
+                    $("#alertInformation").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, You must not leave any blanks to change your information to update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 3){
+                    //Error not checked
+                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, There is a problem to database connection! Please try again.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else{
+                    //none
+                }
+            }
+            
 
-
+        }); 
     </script>   
 </head>
 <body>
@@ -125,7 +135,7 @@
 			
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="/provider">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
@@ -137,7 +147,7 @@
 					<span class="text">Activity</span>
 				</a>
 			</li>
-			<li>
+			<li  class="active">
 				<a href="/provider/settings">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Settings</span>
@@ -177,56 +187,68 @@
 						<li>
 							<a href="#">Dashboard</a>
 						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
+						<li><i class='bx bx-chevron-right'></i></li>
 						<li>
-							<a class="active" href="/provider">Home</a>
+							<a class="active" href="/provider/settings">Settings</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 
-			<ul class="box-info" id="stats-office">
-
-			</ul>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Recent Time In</h3>
-						<i></i>
-						<i></i>
+						<h3>Settings</h3>
 					</div>
-					<table id="recent_users">
-						<thead>
-							<tr>
-								<th>User</th>
-								<th>Time-In</th>
-								<th>Option</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+
+                    <!--info settings -->
+                    <div class="container" style="margin-bottom: 25px;">
+                        <div class="row">
+                            <form id="infoSettings" action="./fetch/settings/changeInfo.php" method="post" enctype="multipart/form-data">
+                            </form>
+                        
+                        </div>
+
+                    </div>
+
+                    <!--password settings -->
+                    <div class="container">
+                        <div class="row">
+                            <form id="passSettings">
+                                <h4>Password</h4>
+                                <div class="col">
+                                    <div class="row row-cols-3" style="margin-bottom: 10px;">
+                                        <div class="col">
+                                            <label for="inputOldPass">Old Password</label>
+                                            <input type="password" class="form-control" id="inputOldPass">
+                                        </div>
+                                        <div class="col">
+                                            <label for="inputNewPass">New Password</label>
+                                            <input type="password" class="form-control" id="inputNewPass">
+                                        </div>
+                                        <div class="col">
+                                            <label for="inputRePass">Confirm Password</label>
+                                            <input type="password" class="form-control" id="inputRePass">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 10px;">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                        <label class="form-check-label" for="gridCheck">
+                                            Are you you want to change your password?
+                                        </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
 				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Trace Request</h3>
-						<i class=''></i>
-						<i class=''></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p></p>
-							<i class='bx bx-info-circle'></i>
-						</li>
-						<li class="not-completed">
-							<p></p>
-							<i class='bx bx-error'></i>
-						</li>
-					</ul>
-				</div>
 			</div>
+
 		</main>
 		<!-- MAIN -->
 	</section>

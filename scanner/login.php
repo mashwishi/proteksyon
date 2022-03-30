@@ -30,7 +30,7 @@
     <link href="../assets/images/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
 
     
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
@@ -64,7 +64,7 @@
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
     <form action="authScanner.php" method="post">
-    <h1>Login Account</h1>
+    <h1>Scanner Account</h1>
       <fieldset>
 
         <p>
@@ -112,9 +112,9 @@
     </form>
 
     <p>
-        <a href="/user">
-            <i class="fas fa-user map-before"></i>
-            <button class="map">Login as User</button>
+        <a href="/provider">
+            <i class="fas fa-shield-virus map-before"></i>
+            <button class="map">Login as Provider</button>
         </a>
     </p>
 

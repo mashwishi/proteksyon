@@ -2,7 +2,7 @@
     session_start();
 
     $user_id = $_SESSION['user_id'];
-    $connect = mysqli_connect("localhost", "id18505495_mashwishi", "Q5]wp17O@/bcjoT~", "id18505495_proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
     $output = '';
 
     $aquery = "SELECT * FROM users_tb where user_id = $user_id";
@@ -27,7 +27,7 @@
                             //verified
                             $output .= '
                             <div class="profile-image" id="avatar">
-                            <img style="width: 77px;" src="data:image/png;base64,'. base64_encode($arow["user_avatar"]) .'" alt="avatar"/>  
+                            <img style="width: 77px;" src="user_data/user_avatar/'.$arow["user_avatar"].'" alt="avatar"/>  
                             </div>
                             <div class="profile-user-settings">
                             <h1 class="profile-user-name">' . $arow["user_first_name"] . '                    
@@ -219,6 +219,8 @@
                             </script>
                                                     
                         ';
+                        // Close DB Connection
+                        $connect -> close();  
                         }else{
                         //not verified
                             $output .= '
@@ -414,6 +416,8 @@
                             </script>
                                                     
                         ';
+                        // Close DB Connection
+                        $connect -> close();  
                         }
 
                     }
@@ -490,5 +494,7 @@
             </div>
             <script  src="assets/js/script.js"></script>
             ';
+            // Close DB Connection
+            $connect -> close();  
         }
 ?>

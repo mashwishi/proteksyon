@@ -8,6 +8,7 @@ include '../db_conn.php';
                 'secret' => '0xdFB82E7c8075cb50E930Faac5002A7214DA9C195',
                 'response' => $_POST['h-captcha-response']
             );
+            
             $ch = curl_init();                
             curl_setopt($ch, CURLOPT_URL, "https://hcaptcha.com/siteverify");
             curl_setopt($ch, CURLOPT_POST, true);
@@ -39,19 +40,6 @@ include '../db_conn.php';
                     //Vaccine and Dose
                     $vaccine = $_POST['vaccine'];
                     $dose = $_POST['dose'];
-                    //Vaccine Card Front
-                    $card_front = $_FILES['card_front']['tmp_name'];
-                    $card_front_name = $_FILES['card_front']['name'];
-                    $xcard_front = base64_encode(file_get_contents(addslashes($card_front)));
-                    //Vaccine Card Back
-                    $card_back = $_FILES['card_back']['tmp_name'];
-                    $card_back_name = $_FILES['card_back']['name'];
-                    $xcard_back = base64_encode(file_get_contents(addslashes($card_back)));      
-
-                    //Profile Picture
-                    $avatar = $_FILES['avatar']['tmp_name'];
-                    $avatar_name = $_FILES['avatar']['name'];
-                    $xavatar = base64_encode(file_get_contents(addslashes($avatar)));  
 
                     //UUID
                     $uuid = '0x' . md5($email);
@@ -72,53 +60,128 @@ include '../db_conn.php';
                         }
                         //if success no same phone
                         else{
-                            $sql = "
-                            INSERT INTO 
-                            users_tb(
-                            user_uuid,user_email,user_password,user_contactno,user_avatar,
-                            user_first_name,user_middle_name,user_last_name,user_birthday,
-                            user_gender, user_country, user_zipcode, user_city, user_address,
-                            user_card_front, user_card_back, user_vaccine, user_dose
-                            )
-                            VALUES( 
-                                '$uuid','$email', '$encrypt_password', '$phone', '$xavatar',
-                                '$fname', '$mname', '$lname', '$birthday',
-                                '$gender', '$country', '$zipcode', '$city', '$address',
-                                '$xcard_front', '$xcard_back', '$vaccine', '$dose'
-                            )
-                            ";
                             
-                            $statement = $conn->prepare($sql);
-                            $statement->execute([
-                                ':user_uuid' => $uuid,
-                                ':user_email' => $email,
-                                ':user_password' => $encrypt_password,
-                                ':user_contactno' => $phone,
-                                ':user_avatar' => $xavatar,
-                                ':user_first_name' => $fname,
-                                ':user_middle_name' => $mname,
-                                ':user_last_name' => $lname,
-                                ':user_birthday' => $birthday,
-                                ':user_gender' => $gender,
-                                ':user_country' => $country,
-                                ':user_zipcode' => $zipcode,
-                                ':user_city' => $city,
-                                ':user_address' => $address,
-                                ':user_card_front' => $xcard_front,
-                                ':user_card_back' => $xcard_back,
-                                ':user_vaccine' => $vaccine,
-                                ':user_dose' => $dose
-                            ]);
-        
-                            // Close DB Connection
-                            //$conn->close();
-        
-                            if (!$conn->error) {
-                                header("Location: /user/register?success=Successfully Registered!");
+                            //Vaccine Card Front
+                            //$card_front_name_temp = $_FILES["card_front"]["name"];
+                            $card_front_name_temp = explode(".", $_FILES["card_front"]["name"]);
+                            $card_front_name = round(microtime(true)) . '.' . end($card_front_name_temp);
+                            $card_front_type = $_FILES["card_front"]["type"];
+                            $card_front_size = $_FILES["card_front"]["size"];
+
+                            //Vaccine Card Back
+                            //$card_back_name_temp = $_FILES["card_back"]["name"];
+                            $card_back_name_temp = explode(".", $_FILES["card_back"]["name"]);
+                            $card_back_name = round(microtime(true)) . '.' . end($card_back_name_temp);
+                            $card_back_type = $_FILES["card_back"]["type"];
+                            $card_back_size = $_FILES["card_back"]["size"];
+
+                            //Profile Picture
+                            //$avatar_name_temp = $_FILES["avatar"]["name"];
+                            $avatar_name_temp = explode(".", $_FILES["avatar"]["name"]);
+                            $avatar_name = round(microtime(true)) . '.' . end($avatar_name_temp);
+                            $avatar_type = $_FILES["avatar"]["type"];
+                            $avatar_size = $_FILES["avatar"]["size"];
+                            
+                            // Check if file was uploaded without errors
+                            if(
+                                isset($_FILES["card_front"]) && $_FILES["card_front"]["error"] == 0 || 
+                                isset($_FILES["card_back"]) && $_FILES["card_back"]["error"] == 0 || 
+                                isset($_FILES["avatar"]) && $_FILES["avatar"]["error"] == 0 
+                            ){
+
+                                $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+                                    
+                                // Validate file extension
+                                $card_front_ext = pathinfo($card_front_type, PATHINFO_EXTENSION);
+                                $card_back_ext = pathinfo($card_front_type, PATHINFO_EXTENSION);
+                                $avatar_ext = pathinfo($avatar_size, PATHINFO_EXTENSION);
+
+                                if(!array_key_exists($card_front_ext, $allowed) || !array_key_exists($card_back_ext, $allowed) || !array_key_exists($avatar_ext, $allowed) ){
+                                    header("Location: /user/register?error=Please upload valid image format like JPEG, JPG, PNG, GIF&email=$email");
                                 }
-                            else {
-                                header("Location: /user/register?error=Failed to create your account!");
+                            
+                                // Validate file size - 10MB maximum
+                                $maxsize = 10 * 1024 * 1024;
+                                if($card_front_size > $maxsize || $card_back_size > $maxsize || $avatar_size > $maxsize){
+                                    header("Location: /user/register?error=Please upload valid image size(Max Upload Size: 10MB)&email=$email");
+                                }
+
+                                // Validate type of the file
+                                if(in_array($card_front_type, $allowed) || in_array($card_back_type, $allowed) || in_array($avatar_type, $allowed) ){
+                                    // Check whether file exists before uploading it
+                                    if(file_exists("upload/" . $card_front_name) ){
+                                        echo $filename . " is already exists.";
+                                    }else{
+                                        if(
+                                            move_uploaded_file($_FILES["card_front"]["tmp_name"], "user_data/card_front/" . $card_front_name) && 
+                                            move_uploaded_file($_FILES["card_back"]["tmp_name"], "user_data/card_back/" . $card_back_name) && 
+                                            move_uploaded_file($_FILES["avatar"]["tmp_name"], "user_data/user_avatar/" . $avatar_name) 
+                                        ){
+
+                                                $card_front_data = $card_front_name . $card_front_type;
+                                                $card_back_data = $card_back_name . $card_back_type;
+                                                $avatar_name_data = $avatar_name . $avatar_name_type;
+
+                                                $sql = "
+                                                INSERT INTO 
+                                                users_tb(
+                                                user_uuid,user_email,user_password,user_contactno,user_avatar,
+                                                user_first_name,user_middle_name,user_last_name,user_birthday,
+                                                user_gender, user_country, user_zipcode, user_city, user_address,
+                                                user_card_front, user_card_back, user_vaccine, user_dose
+                                                )
+                                                VALUES( 
+                                                    '$uuid','$email', '$encrypt_password', '$phone', '$avatar_name_data',
+                                                    '$fname', '$mname', '$lname', '$birthday',
+                                                    '$gender', '$country', '$zipcode', '$city', '$address',
+                                                    '$card_front_data', '$card_back_data', '$vaccine', '$dose'
+                                                )
+                                                ";
+                                                
+                                                $statement = $conn->prepare($sql);
+                                                $statement->execute([
+                                                    ':user_uuid' => $uuid,
+                                                    ':user_email' => $email,
+                                                    ':user_password' => $encrypt_password,
+                                                    ':user_contactno' => $phone,
+                                                    ':user_avatar' => $avatar_name_data,
+                                                    ':user_first_name' => $fname,
+                                                    ':user_middle_name' => $mname,
+                                                    ':user_last_name' => $lname,
+                                                    ':user_birthday' => $birthday,
+                                                    ':user_gender' => $gender,
+                                                    ':user_country' => $country,
+                                                    ':user_zipcode' => $zipcode,
+                                                    ':user_city' => $city,
+                                                    ':user_address' => $address,
+                                                    ':user_card_front' => $card_front_data,
+                                                    ':user_card_back' => $card_back_data,
+                                                    ':user_vaccine' => $vaccine,
+                                                    ':user_dose' => $dose
+                                                ]);                            
+                                                
+                                                if (!$conn->error) {
+                                                    header("Location: /user/register?success=Successfully Registered!");
+                                                    }
+                                                else {
+                                                    header("Location: /user/register?error=Failed to create your account!");
+                                                }
+                    
+                                                // Close DB Connection
+                                                $conn -> close();  
+
+                                        } else{
+                                            header("Location: /user/register?error=Images file failed to upload, Please try again.&email=$email");
+                                        }
+                                        
+                                    } 
+                                } else{
+                                    header("Location: /user/register?error=Invalid type of image&email=$email");
+                                }
+                            } else{
+                                header("Location: /user/register?error=Error upload your images&email=$email");
                             }
+                            
                         }
                     }        
 
@@ -127,6 +190,4 @@ include '../db_conn.php';
                 header("Location: /user/register?error=Captcha failed, please try again.");			                
             }
     }
-
-    
 ?>  

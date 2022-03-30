@@ -2,7 +2,7 @@
     session_start();
 
     $user_id = $_SESSION['user_id'];
-    $connect = mysqli_connect("localhost", "id18505495_mashwishi", "Q5]wp17O@/bcjoT~", "id18505495_proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_id = $user_id";
@@ -34,10 +34,14 @@
                         ';
             }
             echo $output;
+            // Close DB Connection
+            $connect -> close();              
         }
         else{
             echo '
 
             ';
+            // Close DB Connection
+            $connect -> close(); 
         }
 ?>

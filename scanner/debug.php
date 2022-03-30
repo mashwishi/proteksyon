@@ -50,9 +50,10 @@
     <link href="../assets/images/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="../assets/images/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
 
+
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
-    <title>Proteksyon | Scanner</title>
+    <title></title>
 
     <!-- Style Sheets -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
@@ -86,6 +87,7 @@
        //       }
       //    }
     //  }          
+
       $(document).ready(function(){        
         var mobile = document.getElementById("mobile");
         var desktop = document.getElementById("desktop");
@@ -105,11 +107,11 @@
                 data:{query:query},
                 success:function(data)
                 {
-                  $('#Default > .container > #provider_info').html(data);
-                  $('#Scanner > .container > #provider_info').html(data);
+                  $('#provider_info').html(data);
                 }
               });
             } 
+
             load_provider_data_logs();
             function load_provider_data_logs(query)
             {
@@ -200,20 +202,16 @@
 
     <div id="mobile"> 
 
+
       <!-- default --> 
       <div id="Default" style="display: block;" class="tabcontent">   
-      <div class="container" style="padding: 0px 0px 0px 0px !important">
+              <div class="container" style="padding: 0px 0px 0px 0px !important">
             <!-- provider header -->
-            <div class="pcontainer" id="provider_info" style="box-shadow: 0px 2px 5px 0px #888888; margin-bottom: 5%;">               
+            <div class="pcontainer" id="provider_info">               
             </div> 
-      </div> 
-
-            <div class="container" id="user_logs">
-            </div>   
-
       </div>
 
-      <!-- scanner --> 
+      <!-- home --> 
       <div id="Scanner" class="tabcontent">        
       <div class="container" style="padding: 0px 0px 0px 0px !important">
             <!-- provider header -->

@@ -81,61 +81,105 @@
             mobile.style.display = "block";
 
             load_user_data();
-            function load_user_data(query)
+            async function load_user_data(query)
             {
               $.ajax({
-                url:"./fetch/user_fetch.php",
+                url:"./settings/user_fetch.php",
                 method:"post",
                 data:{query:query},
                 success:function(data)
                 {
                   $('#profile').html(data);
+                  checkUpdate();
                 }
               });
+            }
+
+            function checkUpdate()
+            {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const msgUpdateInfo = urlParams.get('updateSettings');
+
+                if(msgUpdateInfo == 0){
+                    //Success
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Your information has been successfully updated.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 1){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, You must agree to change or update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 2){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, You must not leave any blanks to change or update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 3){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, There is a problem to connection! Please try again.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 4){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Please upload valid image format like JPEG, JPG, PNG, GIF.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 5){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Please upload valid image size (Max Upload Size: 10MB)<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 6){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> The password you input does not match to password confirmation<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else if(msgUpdateInfo == 7){
+                    //Error not checked
+                    $("#alertInformation").html('<div style="margin-bottom: 0rem !important;" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Password incorrect, Please try again!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                }
+                else{
+                    //none
+                }
             }
 
             load_status_data();
             function load_status_data(query)
             {
               $.ajax({
-                url:"./fetch/status_fetch.php",
+                url:"./settings/getInformation.php",
                 method:"post",
                 data:{query:query},
                 success:function(data)
                 {
-                  $('#Default').html(data);
-                  $('#Home').html(data);
+                  $('#Default  > .container').html(data);
+                  $('#Profile  > .container').html(data);
+                }
+              });
+            }    
+            
+            load_address_settings();
+            function load_address_settings(query)
+            {
+              $.ajax({
+                url:"./settings/getAddress.php",
+                method:"post",
+                data:{query:query},
+                success:function(data)
+                {
+                  $('#Address > .container').html(data);
                 }
               });
             }  
 
-            load_logs_data();
-            function load_logs_data(query)
+            load_contact_settings();
+            function load_contact_settings(query)
             {
               $.ajax({
-                url:"./fetch/logs_fetch.php",
+                url:"./settings/getContact.php",
                 method:"post",
                 data:{query:query},
                 success:function(data)
                 {
-                  $('#Log').html(data);
+                  $('#Contact > .container').html(data);
                 }
               });
-            }        
-            
-            load_card_data();
-            function load_card_data(query)
-            {
-              $.ajax({
-                url:"./fetch/card_fetch.php",
-                method:"post",
-                data:{query:query},
-                success:function(data)
-                {
-                  $('#card-details').html(data);
-                }
-              });
-            }              
+            }  
 
           }
           else{
@@ -147,35 +191,7 @@
       }); 
 
       window.onload = function () {      
-          function generateQRCode() {
-                let UUID = '<?php echo $user_uuid; ?>';
-                if (UUID) {
-                  let qrcodeContainer = document.getElementById("qrcode");
-                  qrcodeContainer.innerHTML = "";
-                  new QRCode(qrcodeContainer, UUID);
-                  document.getElementById("qrcode-container").style.display = "block";
 
-                  let xqrcodeContainer = document.getElementById("xqrcode");
-                  xqrcodeContainer.innerHTML = "";
-                  new QRCode(xqrcodeContainer, {
-                    text: UUID,
-                    width: 150,
-                    height: 150,
-                    colorDark: "#1B1B1B",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                  });
-                  document.getElementById("xqrcode-container").style.display = "block";    
-                  
-                  
-
-
-                }
-                else {
-                 //
-                }
-          }       
-          generateQRCode();
       };
 
     </script>   
@@ -213,84 +229,82 @@
         </div>
       </header> 
 
-      <!-- default --> 
+      <!-- profile default --> 
       <div id="Default" style="display: block;" class="tabcontent">   
-      <div class="loader" id="loader"></div>
+        <div class="container">
+        </div>     
       </div>
 
-      <!-- home --> 
-      <div id="Home" class="tabcontent">
+      <!-- profile --> 
+      <div id="Profile" class="tabcontent">
         <div class="container">
         </div>      
       </div>
-      <!-- qr -->
-      <div id="QR" class="tabcontent">
+
+      <!-- contact -->
+      <div id="Contact" class="tabcontent">
         <div class="container">
-          <!-- <p style="font-size: 12px; text-align: center;">Do not share your qr code on social media.</p> <div id="qrcode"></div>-->
-          <div style="max-width: 400px; margin: 0 auto; padding: 20px;">
-              <p class="qrcode-msg" style="font-size: 10px">Use this QR for contact tracing only, <br/> Do not share or upload your QR on social media.</p>
-                <div id="qrcode-container">
-                  <div id="qrcode" class="qrcode"></div>
+        </div>      
+      </div>
+
+      <!-- security -->
+      <div id="Security" class="tabcontent">
+        <div class="container">
+            <form action="./settings/changePassword.php" method="post" enctype="multipart/form-data">
+                <div class="form-group"  style="margin-bottom: 10px">
+                    <label for="OldPassword"><h3>Old Password</h3></label>
+                    <input type="password" id="OldPassword" class="form-control" name="OldPassword">
                 </div>
-              <p class="qrcode-msg" style="font-size: 30px">SCAN ME</p>
-          </div>
-        
+                <div class="form-group"  style="margin-bottom: 10px">
+                    <label for="NewPassword"><h3>New Password</h3></label>
+                    <input type="password" id="NewPassword" class="form-control" name="NewPassword">
+                </div>
+                <div class="form-group"  style="margin-bottom: 10px">
+                    <label for="ConfirmPassword"><h3>Confirm Password</h3></label>
+                    <input type="password" id="ConfirmPassword" class="form-control" name="ConfirmPassword" aria-describedby="passwordHelpBlock">
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                    Your password must be 8-32 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </small>
+                </div>
+                <div class="form-group"  style="margin-bottom: 10px">
+                    <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="passwordCheck" name="passwordCheck">
+                    <label class="form-check-label" for="passwordCheck">Do you agree to save your changes?</label>
+                    </div>
+                </div>
+                <div class="form-group"  style="margin-bottom: 10px">
+                    <input type="submit" value="Change Password" name="changePassword"
+                        style="text-align:center !important; text-decoration:none; justify-content:center; align-items:center;
+                        margin-left: 5px; margin-right: 5px;display: inline-block !important;padding: 5px 28px !important;
+                        color: black !important;background-color: white !important;border: 0.1rem solid #dbdbdb !important;
+                        font-size: 14px;font-weight: bold; !important;width: 100%;">
+                </div>
+            </form>
         </div>      
       </div>
-      <!-- log -->
-      <div id="Log" class="tabcontent">
-        <div class="container">
-        Log
-        </div>      
-      </div>
-      <!-- card -->
-      <div id="Card" class="tabcontent">
-        <div class="container">
-                <div id="userID" style="border-color: #000 !important; box-shadow: 0 4px 8px 0 rgb(0 0 0 / 48%) !important; max-width: 300px  !important; margin: auto  !important; text-align: center  !important; font-family: arial  !important; border-style: dotted !important; border-width: thin  !important;">
-                    <div id="xqrcode-container">
-                      <div id="xqrcode" class="xqrcode">                  
-                      </div>
-                    </div>                  
-                  <div id="card-details"></div>
-                </div>                                  
 
-                <div class="row">
-                  <button id="downloadCardID" style="font-size: 15px; font-weight: 800; text-align: center !important; text-decoration: none; justify-content: center; align-items: center; margin-bottom: 5%; margin-top: 5%; margin-left: auto; margin-right: auto;  display: inline-block !important;  padding: 5px 28px !important;  color: black !important;  background-color: white !important;  border: 0.1rem solid #dbdbdb !important; width: 85%;">
-                        Download
-                  </button>  
-                  <script type="text/javascript">
-                      document.getElementById("downloadCardID").addEventListener("click", function() {
-                        html2canvas(document.getElementById("userID")).then(function (canvas) {
-                          var anchorTag = document.createElement("a");
-                            document.body.appendChild(anchorTag);
-                            //<div id="previewImg"></div>    
-                            //document.getElementById("previewImg").appendChild(canvas);
-                            anchorTag.download = "proteksyon_id.jpg";
-                            anchorTag.href = canvas.toDataURL();
-                            anchorTag.target = '_blank';
-                            anchorTag.click();
-                          });
-                      });                      
-                  </script>
-                </div>                
+      <!-- Address -->
+      <div id="Address" class="tabcontent">
+        <div class="container">             
         </div>      
       </div>    
 
       <!-- user menu -->
       <div class="menu">
+      <div id="alertInformation"></div>
         <div class="tab">
           <div class="row">
             <div class="col">
-              <button class="tablinks active" onclick="openCity(event, 'Home')"><i class="fas fa-home"></i><br/><span style="font-size: 7px">HOME</span></button>
+              <button class="tablinks active" onclick="openCity(event, 'Profile')"><i class="far fa-user"></i><br/><span style="font-size: 7px">PROFILE</span></button>
             </div>
             <div class="col">
-              <button class="tablinks" onclick="openCity(event, 'QR')"><i class="fas fa-qrcode"></i><br/><span style="font-size: 7px">QR</span></button>
+              <button class="tablinks" onclick="openCity(event, 'Contact')"><i class="far fa-address-card"></i><br/><span style="font-size: 7px">OTHERS</span></button>
             </div>
             <div class="col">
-              <button class="tablinks" onclick="openCity(event, 'Log')"><i class="fas fa-list"></i><br/><span style="font-size: 7px">LOG</span></button>
+              <button class="tablinks" onclick="openCity(event, 'Security')"><i class="fas fa-lock"></i><br/><span style="font-size: 7px">SECURITY</span></button>
             </div>
             <div class="col">
-              <button class="tablinks" onclick="openCity(event, 'Card')"><i class="far fa-clipboard"></i><br/><span style="font-size: 7px">CARD</span></button>
+              <button class="tablinks" onclick="openCity(event, 'Address')"><i class="far fa-map"></i><br/><span style="font-size: 7px">ADDRESS</span></button>
             </div>
           </div>        
           

@@ -1,12 +1,12 @@
 <?php
     session_start();
-    include '../../db_conn.php';
+    //include '../../db_conn.php';
 
     $UUID = isset($_POST["UUID"]) ? $_POST["UUID"] : '';
 
     $provider_id = $_SESSION['provider_id'];
 
-    $connect = mysqli_connect("localhost", "id18505495_mashwishi", "Q5]wp17O@/bcjoT~", "id18505495_proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_uuid = '$UUID'";
@@ -21,9 +21,10 @@
             
             date_default_timezone_set('Asia/Manila');
             $date_today = date('F j, Y g:i:A ');
+            $date = date("Y-m-d");
             $user_id_fk = $row["user_id"];
 
-            $sql = "INSERT INTO logs_tb(logs_id,provider_id,user_id,status,time_in) VALUES('','$provider_id', '$user_id_fk', '', '$date_today')";
+            $sql = "INSERT INTO logs_tb(logs_id,provider_id,user_id,status,time_in, log_date) VALUES('','$provider_id', '$user_id_fk', '', '$date_today', '$date')";
         
             $statement = $conn->prepare($sql);
             $statement->execute([
@@ -46,7 +47,8 @@
                         <button onclick="scanAgain()" class="scan-again-btn">TRY AGAIN</button>
                         </div>                      
                     ';
-                    //error_log('Connection error: ' . mysqli_connect_error());
+                    // Close DB Connection
+                    $connect -> close();  
                 }                   
                 else {
                     
@@ -62,13 +64,15 @@
                     <div class="container-approval"> 
                         <button id="cancel" onclick="scanAgain()" class="cancel-btn btn-danger">CLOSE</button>
                     </div>                                          
-                    ';                     
+                    ';               
                 }
                 
 
 
             }
-            echo $output;
+            echo $output;   
+            // Close DB Connection
+            $connect -> close();     
         }
         else{
             echo '
@@ -84,5 +88,7 @@
                     <button onclick="scanAgain()" class="scan-again-btn">TRY AGAIN</button>
                     </div>                        
             ';
+            // Close DB Connection
+            $connect -> close();   
         }
 ?>
