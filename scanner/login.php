@@ -105,6 +105,17 @@
                         <?php } ?>
         </span>
 
+        <span style="color: #F86168; font-size: 12px">
+                        <?php if (isset($_GET['error'])) { ?>
+                        <?=htmlspecialchars($_GET['error'])?>
+                        <?php } ?>
+              </span>   
+
+              <span style="color: #00C122; font-size: 12px">
+                        <?php if (isset($_GET['success'])) { ?>
+                        <?=htmlspecialchars($_GET['success'])?>
+                        <?php } ?>
+              </span>   
         <p><input style="margin-top: 3%;" type="submit" value="Login"></p>
 
       </fieldset>

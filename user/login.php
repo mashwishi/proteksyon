@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="apple-mobile-web-app-status-bar" content="#db4938">
     <meta name="theme-color" content="#db4938">
-    <link rel="manifest" href="../manifest.webmanifest">
+    <link rel="manifest" href="../manifest.json">
     
     <!-- ios support -->
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-192x192.png">
@@ -112,6 +112,19 @@
                         <?=htmlspecialchars($_GET['error-captcha'])?>
                         <?php } ?>
         </span>
+
+        
+        <span style="color: #F86168; font-size: 12px">
+                        <?php if (isset($_GET['error'])) { ?>
+                        <?=htmlspecialchars($_GET['error'])?>
+                        <?php } ?>
+              </span>   
+
+              <span style="color: #00C122; font-size: 12px">
+                        <?php if (isset($_GET['success'])) { ?>
+                        <?=htmlspecialchars($_GET['success'])?>
+                        <?php } ?>
+              </span>   
 
         <p><input style="margin-top: 3%;" type="submit" value="Login"></p>
 

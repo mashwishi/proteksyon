@@ -31,8 +31,8 @@
     <meta name="theme-color" content="#db4938">
     <link rel="manifest" href="../manifest.json">
 
-        <!-- ios support -->
-        <link rel="apple-touch-icon" href="../assets/images/icons/icon-192x192.png">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="../assets/images/icons/icon-192x192.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-256x256.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-384x384.png">
     <link rel="apple-touch-icon" href="../assets/images/icons/icon-512x512.png">
@@ -246,6 +246,13 @@
       <!-- card -->
       <div id="Card" class="tabcontent">
         <div class="container">
+
+              <div class="row">
+                <a href="/user/request" style="font-size: 15px; font-weight: 800; text-align: center !important; text-decoration: none; justify-content: center; align-items: center; margin-bottom: 5%; margin-top: 5%; margin-left: auto; margin-right: auto;  display: inline-block !important;  padding: 5px 28px !important;  color: black !important;  background-color: white !important;  border: 0.1rem solid #dbdbdb !important; width: 85%;">
+                  Request Update
+                </a>  
+              </div>
+
                 <div id="userID" style="border-color: #000 !important; box-shadow: 0 4px 8px 0 rgb(0 0 0 / 48%) !important; max-width: 300px  !important; margin: auto  !important; text-align: center  !important; font-family: arial  !important; border-style: dotted !important; border-width: thin  !important;">
                     <div id="xqrcode-container">
                       <div id="xqrcode" class="xqrcode">                  
@@ -255,7 +262,7 @@
                 </div>                                  
 
                 <div class="row">
-                  <button id="downloadCardID" style="font-size: 15px; font-weight: 800; text-align: center !important; text-decoration: none; justify-content: center; align-items: center; margin-bottom: 5%; margin-top: 5%; margin-left: auto; margin-right: auto;  display: inline-block !important;  padding: 5px 28px !important;  color: black !important;  background-color: white !important;  border: 0.1rem solid #dbdbdb !important; width: 85%;">
+                  <button id="downloadCardID" style="font-size: 15px; font-weight: 800; text-align: center !important; text-decoration: none; justify-content: center; align-items: center; margin-bottom: 15px; margin-top: 5%; margin-left: auto; margin-right: auto;  display: inline-block !important;  padding: 5px 28px !important;  color: black !important;  background-color: white !important;  border: 0.1rem solid #dbdbdb !important; width: 85%;">
                         Download
                   </button>  
                   <script type="text/javascript">

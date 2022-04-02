@@ -15,7 +15,7 @@
             {                         
                         $output .= '                           
                         <div class="xcontainer" id="user_popup_output">
-                            <img class="image" src="data:image/png;base64,'. base64_encode($row["user_avatar"]) .'" alt="user_avatar">
+                            <img class="image" src="../../user/user_data/user_avatar/'. $row["user_avatar"] .'" alt="user_avatar">
                             <div> 
                                 <h2>'. $row["user_first_name"] .' '. $row["user_last_name"] .'</h2>
                                 <h5>'. $row["user_country"] .', '. $row["user_city"] .'</h5>

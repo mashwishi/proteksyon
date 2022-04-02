@@ -7,7 +7,7 @@
     $output = '';
 
     $query = "
-    SELECT *
+    SELECT user_first_name, user_middle_name, user_last_name
     FROM users_tb WHERE user_id = $user_id";
 
     $result = mysqli_query($connect, $query);

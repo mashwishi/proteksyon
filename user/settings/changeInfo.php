@@ -71,11 +71,11 @@ if(isset($_POST["changeInfo"]))
                     }
                     else{
                         if(move_uploaded_file($_FILES["avatar"]["tmp_name"], "../user_data/user_avatar/" . $avatar_name)){
-                                $avatar_name_data = $avatar_name . $avatar_name_type;
-                                $sql = "UPDATE users_tb SET user_avatar='$avatar_name_data', user_first_name='$fname', user_middle_name='$mname', user_last_name='$lname' WHERE user_id = $user_id";
+                            
+                                $sql = "UPDATE users_tb SET user_avatar='$avatar_name', user_first_name='$fname', user_middle_name='$mname', user_last_name='$lname' WHERE user_id = $user_id";
                                 $statement = $conn->prepare($sql);
                                 $statement->execute([
-                                    ':user_avatar' => $avatar_name_data,
+                                    ':user_avatar' => $avatar_name,
                                     ':user_first_name' => $fname,
                                     ':user_middle_name' => $mname,
                                     ':user_last_name' => $lname

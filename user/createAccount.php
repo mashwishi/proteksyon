@@ -96,9 +96,9 @@ include '../db_conn.php';
                                 $card_back_ext = pathinfo($card_front_type, PATHINFO_EXTENSION);
                                 $avatar_ext = pathinfo($avatar_size, PATHINFO_EXTENSION);
 
-                                if(!array_key_exists($card_front_ext, $allowed) || !array_key_exists($card_back_ext, $allowed) || !array_key_exists($avatar_ext, $allowed) ){
-                                    header("Location: /user/register?error=Please upload valid image format like JPEG, JPG, PNG, GIF&email=$email");
-                                }
+                                //if(!array_key_exists($card_front_ext, $allowed) || !array_key_exists($card_back_ext, $allowed) || !array_key_exists($avatar_ext, $allowed) ){
+                                //    header("Location: /user/register?error=Please upload valid image format like JPEG, JPG, PNG, GIF&email=$email");
+                                //}
                             
                                 // Validate file size - 10MB maximum
                                 $maxsize = 10 * 1024 * 1024;
@@ -118,10 +118,6 @@ include '../db_conn.php';
                                             move_uploaded_file($_FILES["avatar"]["tmp_name"], "user_data/user_avatar/" . $avatar_name) 
                                         ){
 
-                                                $card_front_data = $card_front_name . $card_front_type;
-                                                $card_back_data = $card_back_name . $card_back_type;
-                                                $avatar_name_data = $avatar_name . $avatar_name_type;
-
                                                 $sql = "
                                                 INSERT INTO 
                                                 users_tb(
@@ -131,10 +127,10 @@ include '../db_conn.php';
                                                 user_card_front, user_card_back, user_vaccine, user_dose
                                                 )
                                                 VALUES( 
-                                                    '$uuid','$email', '$encrypt_password', '$phone', '$avatar_name_data',
+                                                    '$uuid','$email', '$encrypt_password', '$phone', '$avatar_name',
                                                     '$fname', '$mname', '$lname', '$birthday',
                                                     '$gender', '$country', '$zipcode', '$city', '$address',
-                                                    '$card_front_data', '$card_back_data', '$vaccine', '$dose'
+                                                    '$card_front_name', '$card_back_name', '$vaccine', '$dose'
                                                 )
                                                 ";
                                                 
@@ -144,7 +140,7 @@ include '../db_conn.php';
                                                     ':user_email' => $email,
                                                     ':user_password' => $encrypt_password,
                                                     ':user_contactno' => $phone,
-                                                    ':user_avatar' => $avatar_name_data,
+                                                    ':user_avatar' => $avatar_name,
                                                     ':user_first_name' => $fname,
                                                     ':user_middle_name' => $mname,
                                                     ':user_last_name' => $lname,
@@ -154,14 +150,60 @@ include '../db_conn.php';
                                                     ':user_zipcode' => $zipcode,
                                                     ':user_city' => $city,
                                                     ':user_address' => $address,
-                                                    ':user_card_front' => $card_front_data,
-                                                    ':user_card_back' => $card_back_data,
+                                                    ':user_card_front' => $card_front_name,
+                                                    ':user_card_back' => $card_back_name,
                                                     ':user_vaccine' => $vaccine,
                                                     ':user_dose' => $dose
-                                                ]);                            
+                                                ]);    
+                                            
                                                 
                                                 if (!$conn->error) {
-                                                    header("Location: /user/register?success=Successfully Registered!");
+
+                                                        $link = "<a href='https://proteksyon.ml/user/verify?UUID=".$uuid."'>Click to verify your email</a>";
+
+                                                        require_once('../PHPMailer/PHPMailerAutoload.php');
+
+                                                        $mail = new PHPMailer();
+                                                
+                                                        $mail->CharSet =  "utf-8";
+                                                        $mail->IsSMTP();
+                                                        // enable SMTP authentication
+                                                        $mail->SMTPAuth = true;                  
+                                                        // GMAIL username
+                                                        $mail->Username = "proteksyonsabang@gmail.com";
+                                                        // GMAIL password
+                                                        $mail->Password = "ProteksyonThesis2022!?";
+                                                        $mail->SMTPSecure = "ssl";  
+                                                        // sets GMAIL as the SMTP server
+                                                        $mail->Host = "smtp.gmail.com";
+                                                        // set the SMTP port for the GMAIL server
+                                                        $mail->Port = "465";
+                                                        $mail->From='verification@proteksyon.ml';
+                                                        $mail->FromName='Proteksyon';
+                                                        $mail->AddAddress($email, $fname . ' ' . $mname . ' ' . $lname);
+                                                        $mail->Subject  =  'Proteksyon - Email Verification';
+                                                        $mail->IsHTML(true);
+                                                        $mail->Body    = '
+                                                        <h1>Confirm your email</h1>
+                                                        </br>
+                                                        <strong>Did you register this email to proteksyon.ml? If yes '.$link.'</strong>
+
+                                                        <p>Copy and Paste this link if you can not click the hyper link:<br/>
+                                                        https://proteksyon.ml/user/verify?UUID='.$uuid.'</p>
+
+                                                        <p>If you are having trouble with out registration please contact us at suppot@proteksyon.ml</p>
+                                                        ';
+
+                                                            if($mail->Send())
+                                                            {
+                                                                header("Location: /user/register?success=Successfully Registered, You may also need check your email inbox/spam for email verification.");
+                                                            }
+                                                            else
+                                                            {
+                                                                header("Location: /user/register?error=Failed to send email verification please contact us at suppot@proteksyon.ml");
+                                                                //echo "Mail Error - >".$mail->ErrorInfo;
+                                                            }
+
                                                     }
                                                 else {
                                                     header("Location: /user/register?error=Failed to create your account!");

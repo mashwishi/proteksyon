@@ -8,10 +8,10 @@ if (isset($_POST['scanner_email']) && isset($_POST['scanner_password'])) {
 		$ppassword = $_POST['scanner_password'];
 	
 		if (empty($pemail)) {
-			header("Location: login?error-email=Email is empty, please enter your email!");
+			header("Location: /scanner/login?error-email=Email is empty, please enter your email!");
 		}
 		else if (empty($ppassword)){
-			header("Location: login?error-password=Password should be between 8 and 32 characters&email=$pemail");
+			header("Location: /scanner/login?error-password=Password should be between 8 and 32 characters&email=$pemail");
 		}else{
 			$data = array(
 				'secret' => '0xdFB82E7c8075cb50E930Faac5002A7214DA9C195',

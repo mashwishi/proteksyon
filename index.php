@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="">
 
-    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="manifest" href="./manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/assets/images/icons/icon-192x192.png">
     <link rel="apple-touch-icon" href="/assets/images/icons/icon-256x256.png">
