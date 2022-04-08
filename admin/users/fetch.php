@@ -95,7 +95,7 @@ if($total_data > 0)
               <td>'.$row["user_email"].'</td>
               <td>'.$row["user_contactno"].'</td>
               <td><i class="fas fa-hourglass-end" style="color: #C4A90F" alt="processing"></i></td>
-              <td></td>
+              <td><a class="status completed" style="border: none; outline: none;" href="/admin/users/modify?UUID='. $row['user_uuid'] .'">Modify</a></td>
             </tr>
             ';
         }elseif($row["user_status"]  === '1'){
@@ -108,7 +108,7 @@ if($total_data > 0)
             <td>'.$row["user_email"].'</td>
             <td>'.$row["user_contactno"].'</td>
             <td><i class="fas fa-check" style="color: #0B8507" alt="approved"></i></td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/users/modify?UUID='. $row['user_uuid'] .'">Modify</a></td>
           </tr>
           ';
         }else{
@@ -121,7 +121,7 @@ if($total_data > 0)
             <td>'.$row["user_email"].'</td>
             <td>'.$row["user_contactno"].'</td>
             <td><i class="fas fa-times" style="color: #BD001C" alt="banned"></i></td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/users/modify?UUID='. $row['user_uuid'] .'">Modify</a></td>
           </tr>
           ';
         }
@@ -137,7 +137,7 @@ if($total_data > 0)
               <td>'.$row["user_email"].'</td>
               <td>'.$row["user_contactno"].'</td>
               <td><i class="fas fa-hourglass-end" style="color: #C4A90F" alt="processing"></i></td>
-              <td></td>
+              <td><a class="status completed" style="border: none; outline: none;" href="/admin/users/modify?UUID='. $row['user_uuid'] .'">Modify</a></td>
             </tr>
             ';
         }elseif($row["user_status"]  === '1'){
@@ -150,7 +150,7 @@ if($total_data > 0)
             <td>'.$row["user_email"].'</td>
             <td>'.$row["user_contactno"].'</td>
             <td><i class="fas fa-check" style="color: #0B8507" alt="approved"></i></td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/users/modify?UUID='. $row['user_uuid'] .'">Modify</a></td>
           </tr>
           ';
         }else{
@@ -163,7 +163,7 @@ if($total_data > 0)
             <td>'.$row["user_email"].'</td>
             <td>'.$row["user_contactno"].'</td>
             <td><i class="fas fa-times" style="color: #BD001C" alt="banned"></i></td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/users/modify?UUID='. $row['user_uuid'] .'">Modify</a></td>
           </tr>
           ';
         }

@@ -33,7 +33,7 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
     <!-- Site Title  -->
-    <title>Proteksyon | User Login</title>
+    <title>Proteksyon | Forgot Password</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link
       rel="stylesheet"
@@ -71,8 +71,8 @@
 
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
-    <form action="authLogin.php" method="post">
-    <h1>Login Account</h1>
+    <form action="requestPassword.php" method="post">
+    <h1>Recovery Account</h1>
       <fieldset>
 
         <p>
@@ -84,17 +84,7 @@
                 name="email" 
                 placeholder="Email Address"
             >
-        </p>
-
-        <p>
-            <input
-                type="password" 
-                required 
-                autocomplete="off"
-                name="password" 
-                placeholder="Password"
-            >
-            <p><strong><a href="/user/forgot_password">Forgot Password</a></strong></p>
+            <p><a href="/user/register">Don't have account? Create Account</a>.</p>
         </p>
 
         <div style="margin-top: 3%;" class="h-captcha" data-sitekey="<?php echo $hcaptcha_sitekey ?>"></div>
@@ -118,19 +108,12 @@
                         <?php } ?>
               </span>   
 
-        <p><strong><a href="/user/register">Don't have account? Create Account</a>.</strong></p>
-        <p><input style="margin-top: 3%;" type="submit" value="Login"></p>
+        <p><input style="margin-top: 3%;" type="submit" name="requestPassword" value="Forgot Password"></p>
 
       </fieldset>
 
     </form>
 
-    <p>
-        <a href="/scanner">
-            <i class="fa fa-qrcode map-before"></i>
-            <button class="map">Login as Scanner</button>
-        </a>
-    </p>
 
   <!-- IOS POPUP INSTALL -->
   <div class="modalx fade" id="lab-slide-bottom-popup" data-keyboard="false" data-backdrop="false">

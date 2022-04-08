@@ -110,7 +110,7 @@
                         //not verified
                             $output .= '
                             <div class="profile-image" id="avatar">
-                            <img style="width: 77px;" src="data:image/png;base64,'. base64_encode($arow["user_avatar"]) .'" alt="avatar"/>  
+                            <img style="width: 77px;" src="./user_data/user_avatar/'.$arow["user_avatar"].'" alt="avatar"/>   
                             </div>
                             <div class="profile-user-settings">
                             <h1 class="profile-user-name">' . $arow["user_first_name"] . '                    

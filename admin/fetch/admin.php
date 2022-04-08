@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION['admin_user_id'];
 
     $connect = mysqli_connect("localhost", "root", "", "proteksyon");
     $output = '';

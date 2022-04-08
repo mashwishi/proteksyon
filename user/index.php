@@ -20,6 +20,9 @@
   $user_address = $_SESSION['user_address'];
 
   $user_contactno = $_SESSION['user_contactno'];
+
+  require_once './fetch/check_account.php';
+  
 ?>
 <html lang="en">
   <head>
@@ -74,6 +77,20 @@
         var mobile = document.getElementById("mobile");
         var desktop = document.getElementById("desktop");
         var home = document.getElementById("Home");
+
+        load_user_data();
+            function load_user_data(query)
+            {
+              $.ajax({
+                url:"./fetch/check_account.php",
+                method:"get",
+                data:{query:query},
+                success:function(data)
+                {
+                  $('').html(data);
+                }
+              });
+        }
         
           if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             mobile.style.display = "block";

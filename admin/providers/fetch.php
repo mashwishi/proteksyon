@@ -96,7 +96,7 @@ if($total_data > 0)
               <td>'.$row["provider_email"].'</td>
               <td>'.$row["provider_contactno"].'</td>
               <td><i class="fas fa-store-alt" style="color: #0B8507" alt="open"></i></td>
-              <td></td>
+              <td><a class="status completed" style="border: none; outline: none;" href="/admin/providers/settings?ProviderID='. $row['provider_id'] .'">Modify</a></td>
             </tr>
             ';
         }elseif($row["status_info"]  === 'Closed'){
@@ -109,7 +109,7 @@ if($total_data > 0)
             <td>'.$row["provider_email"].'</td>
             <td>'.$row["provider_contactno"].'</td>
             <td><i class="fas fa-store-alt-slash"" style="color: #BD001C " alt="closed"></i></td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/providers/settings?ProviderID='. $row['provider_id'] .'">Modify</a></td>
           </tr>
           ';
         }else{
@@ -122,7 +122,7 @@ if($total_data > 0)
             <td>'.$row["provider_email"].'</td>
             <td>'.$row["provider_contactno"].'</td>
             <td><i class="fas fa-construction" style="color: #C4A90F" alt="unknown"></i></td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/providers/settings?ProviderID='. $row['provider_id'] .'">Modify</a></td>
           </tr>
           ';
         }

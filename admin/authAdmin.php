@@ -82,28 +82,28 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 										//Check if account is admin
 										if($user_type == 1){
 
-											$_SESSION['user_status'] = $user_status;
-											$_SESSION['verification_status'] = $user_verification;
+											$_SESSION['admin_user_status'] = $user_status;
+											$_SESSION['admin_verification_status'] = $user_verification;
 	
-											$_SESSION['user_id'] = $user_data_id;
-											$_SESSION['user_uuid'] = $user_id;
-											$_SESSION['user_password'] = $user_password;
-											$_SESSION['user_email'] = $user_email;
+											$_SESSION['admin_user_id'] = $user_data_id;
+											$_SESSION['admin_user_uuid'] = $user_id;
+											$_SESSION['admin_user_password'] = $user_password;
+											$_SESSION['admin_user_email'] = $user_email;
 	
-											$_SESSION['user_avatar'] = $user_avatar;
+											$_SESSION['admin_user_avatar'] = $user_avatar;
 	
-											$_SESSION['user_first_name'] = $user_first_name;
-											$_SESSION['user_middle_name'] = $user_middle_name;
-											$_SESSION['user_last_name'] = $user_last_name;
+											$_SESSION['admin_user_first_name'] = $user_first_name;
+											$_SESSION['admin_user_middle_name'] = $user_middle_name;
+											$_SESSION['admin_user_last_name'] = $user_last_name;
 	
-											$_SESSION['user_gender'] = $user_gender;
-											$_SESSION['user_birthday'] = $user_birthday;
+											$_SESSION['admin_user_gender'] = $user_gender;
+											$_SESSION['admin_user_birthday'] = $user_birthday;
 	
-											$_SESSION['user_country'] = $user_country;
-											$_SESSION['user_city'] = $user_city;
-											$_SESSION['user_address'] = $user_address;
+											$_SESSION['admin_user_country'] = $user_country;
+											$_SESSION['admin_user_city'] = $user_city;
+											$_SESSION['admin_user_address'] = $user_address;
 	
-											$_SESSION['user_contactno'] = $user_contactno;
+											$_SESSION['admin_user_contactno'] = $user_contactno;
 	
 											header("Location: /admin/");
 						

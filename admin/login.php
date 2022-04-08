@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  if (!isset($_SESSION['provider_id']) && !isset($_SESSION['provider_email'])) { 
+  if (!isset($_SESSION['admin_user_id']) && !isset($_SESSION['admin_user_email'])) { 
     $hcaptcha_sitekey = 'aaeec26b-2021-48e7-abd5-00c294ecfccd';
 ?>
 <html lang="en">

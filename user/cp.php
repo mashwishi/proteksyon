@@ -33,7 +33,7 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
     <!-- Site Title  -->
-    <title>Proteksyon | User Login</title>
+    <title>Proteksyon | Change Password</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link
       rel="stylesheet"
@@ -71,18 +71,32 @@
 
     <img style="margin-bottom: 5%;" src="../images/logo-dark2x.png" alt="logo">
 
-    <form action="authLogin.php" method="post">
-    <h1>Login Account</h1>
+    <form action="./fetch/fetch_cp.php" method="post">
+    <h1>Change Password</h1>
       <fieldset>
 
         <p>
-          <!--  value of input php: if(isset($_GET['email']))echo(htmlspecialchars($_GET['email'])) -->
             <input 
                 type="email" 
                 required
                 autocomplete="off"
                 name="email" 
                 placeholder="Email Address"
+                value="<?php if (isset($_GET['email'])){ echo $_GET['email']; }?>"
+                readonly
+            >
+        </p>
+
+        <p>
+            <input 
+                type="text" 
+                required
+                autocomplete="off"
+                name="key" 
+                placeholder="Key"
+                value="<?php if (isset($_GET['request'])){ echo $_GET['request']; }?>"
+                readonly
+                style="display: none;"
             >
         </p>
 
@@ -91,10 +105,20 @@
                 type="password" 
                 required 
                 autocomplete="off"
-                name="password" 
-                placeholder="Password"
+                name="newpassword" 
+                placeholder="New Password"
             >
-            <p><strong><a href="/user/forgot_password">Forgot Password</a></strong></p>
+        </p>
+
+        <p>
+            <input
+                type="password" 
+                required 
+                autocomplete="off"
+                name="conpassword" 
+                placeholder="Confirm Password"
+            >
+            <p><a href="/user/register">Don't have account? Create Account</a>.</p>
         </p>
 
         <div style="margin-top: 3%;" class="h-captcha" data-sitekey="<?php echo $hcaptcha_sitekey ?>"></div>
@@ -118,19 +142,12 @@
                         <?php } ?>
               </span>   
 
-        <p><strong><a href="/user/register">Don't have account? Create Account</a>.</strong></p>
-        <p><input style="margin-top: 3%;" type="submit" value="Login"></p>
+        <p><input style="margin-top: 3%;" type="submit" name="changePassword" value="Change Password"></p>
 
       </fieldset>
 
     </form>
 
-    <p>
-        <a href="/scanner">
-            <i class="fa fa-qrcode map-before"></i>
-            <button class="map">Login as Scanner</button>
-        </a>
-    </p>
 
   <!-- IOS POPUP INSTALL -->
   <div class="modalx fade" id="lab-slide-bottom-popup" data-keyboard="false" data-backdrop="false">
