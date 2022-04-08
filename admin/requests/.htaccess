@@ -1,0 +1,18 @@
+ErrorDocument 401 http://proteksyon.ml/error/401
+ErrorDocument 403 http://proteksyon.ml/error/403
+ErrorDocument 404 http://proteksyon.ml/error/404
+ErrorDocument 500 http://proteksyon.ml/error/500
+ErrorDocument 502 http://proteksyon.ml/error/502
+ErrorDocument 503 http://proteksyon.ml/error/503
+ErrorDocument 504 http://proteksyon.ml/error/504
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)$ $1.html [L]
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [L]
+
+RewriteCond %{HTTPS} off 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
