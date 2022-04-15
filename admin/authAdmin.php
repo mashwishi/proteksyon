@@ -117,7 +117,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 								}			
 							}											
 						}else {
-							header("Location: /usadminer/login?error=Incorrect password, Please try again!&email=$email");
+							header("Location: /admin/login?error=Incorrect password, Please try again!&email=$email");
 						}
 					}else {
 						header("Location: /admin/login?error=Incorrect email or password, Please try again!&email=$email");

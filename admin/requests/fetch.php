@@ -101,7 +101,7 @@ if($total_data > 0)
               <td>'.$row["user_first_name"].' ' .$row["user_last_name"].'</td>
               <td>'.$row["user_email"].'</td>
               <td>'.$row["date"].'</td>
-              <td></td>
+              <td><a class="status completed" style="background-color: #808080 !important; border: none; outline: none;">Applied</a></td>
             </tr>
             ';
         }elseif($row["request_status"]  === '0'){
@@ -112,7 +112,7 @@ if($total_data > 0)
             <td>'.$row["user_first_name"].' ' .$row["user_last_name"].'</td>
             <td>'.$row["user_email"].'</td>
             <td>'.$row["date"].'</td>
-            <td></td>
+            <td><a class="status completed" style="border: none; outline: none;" href="/admin/requests/requestData?RequestID='. $row['request_id'] .'">Review</a></td>
           </tr>
           ';
         }else{

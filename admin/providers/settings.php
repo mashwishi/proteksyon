@@ -187,6 +187,12 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 					<span class="text">Providers</span>
 				</a>
 			</li>
+            <li>
+				<a href="/admin/verification">
+					<i class='bx bx-list-check' ></i>
+					<span class="text">Verification</span>
+				</a>
+			</li>
 			<li>
 				<a href="/admin/requests">
 					<i class='bx bxs-inbox' ></i>

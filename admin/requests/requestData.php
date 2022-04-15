@@ -50,7 +50,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../../images/favicon.png">
-	<title>Proteksyon | Modify User</title>
+	<title>Proteksyon | Request Data</title>
 
     <!-- Style Sheets -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
@@ -71,14 +71,14 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
             {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
-                const UUID = urlParams.get('UUID');
+                const RequestID = urlParams.get('RequestID');
 
                 $.ajax({
-                url:"./data/getSettings.php",
+                url:"./data/getInfo.php",
                 method:"post",
                 data:{
                     query:query,
-                    UUID:UUID
+                    RequestID:RequestID
                 },
                 success:function(data)
                 {
@@ -93,31 +93,23 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
             {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
-                const msgUpdateInfo = urlParams.get('updateSettings');
+                const msgUpdateInfo = urlParams.get('alertInformation');
 
                 if(msgUpdateInfo == 0){
                     //Success
-                    $("#alertInformation").html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Your information has been successfully updated.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                    $("#alertInformation").html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Your action has been successfully updated.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 }
                 else if(msgUpdateInfo == 1){
                     //Error not checked
-                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, You must agree to change your information to update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your action, You must agree to change your information to update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 }
                 else if(msgUpdateInfo == 2){
                     //Error not checked
-                    $("#alertInformation").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, You must not leave any blanks to change your information to update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                    $("#alertInformation").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your action, You must not leave any blanks to change your information to update your information.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 }
                 else if(msgUpdateInfo == 3){
                     //Error not checked
-                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your settings, There is a problem to database connection! Please try again.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-                }
-				else if(msgUpdateInfo == 4){
-                    //Error not checked
-                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Email already registered in our database, Please try other email.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-                }
-				else if(msgUpdateInfo == 5){
-                    //Error not checked
-                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Contact number already registered in our database, Please try other contact number.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                    $("#alertInformation").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Error!</strong> Failed to update your action, There is a problem to database connection! Please try again.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 }
                 else{
                     //none
@@ -147,7 +139,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li class="active"> 
+			<li> 
 				<a href="/admin/users">
 					<i class='bx bx-user' ></i>
 					<span class="text">Users</span>
@@ -165,7 +157,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 					<span class="text">Verification</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="/admin/requests">
 					<i class='bx bxs-inbox' ></i>
 					<span class="text">Requests</span>
@@ -218,7 +210,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 						</li>
 						<li><i class='bx bx-chevron-right'></i></li>
 						<li>
-							<a class="active" href="/admin/users">Users</a>
+							<a class="active" href="/admin/requests">Request</a>
 						</li>
 					</ul>
 				</div>
@@ -228,13 +220,13 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>User Settings</h3>
+						<h3>Update Request</h3>
 					</div>
 
                     <!--info settings -->
                     <div class="container" style="margin-bottom: 25px;">
                         <div class="row">
-                            <form id="infoSettings" action="./data/changeInfo.php" method="post" enctype="multipart/form-data">
+                            <form id="infoSettings" action="./data/updateRequest.php" method="post" enctype="multipart/form-data">
                             </form>
                         
                         </div>
@@ -250,7 +242,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 	<!-- CONTENT -->
 	
 
-	<script src="assets/js/dashboard.js"></script>
+	<script src="../assets/js/dashboard.js"></script>
 </body>
 </html>
 <?php 
