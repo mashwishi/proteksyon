@@ -10,6 +10,7 @@
     SELECT 
         request_tb.request_id, 
         request_tb.user_id, 
+        request_tb.request_status,
         users_tb.user_first_name,
         users_tb.user_last_name,
         users_tb.user_email,
@@ -29,9 +30,19 @@
     $result = mysqli_query($connect, $query);
     
         if(mysqli_num_rows($result) > 0){
+
             $output .= '';
             while($row = mysqli_fetch_array($result))
             {
+
+                if($row['request_status'] == 1){
+                    echo '
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Notice:</strong> This request is already applied!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>   
+                    ';
+                }else{
                     $output .= '
                     <h4>'. $row['user_first_name'] .' '. $row['user_last_name'] .'</h4>
 
@@ -100,7 +111,10 @@
                         <input type="submit" name="approveRequest" class="btn btn-success" value="Approve">
                         <input type="submit" name="denyRequest" class="btn btn-secondary" value="Decline">
                     </div>
-                    ';                 
+                    '; 
+                }
+
+                
                 }            
             echo $output;
             // Close DB Connection

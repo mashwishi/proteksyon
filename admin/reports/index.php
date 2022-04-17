@@ -203,7 +203,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
                             <div class="row">
                                 <div class="col-sm">
 									<div class="input-group">
-										<input type="text" name="search_box" id="search_box" class="form-control" placeholder="Search Email..." style="width: 75% !important;"/>
+										<input type="text" name="search_box" id="search_box" class="form-control" placeholder="Search Report ID..." style="width: 75% !important;"/>
 									</div>
                                 </div>
                             </div>

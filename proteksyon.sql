@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2022 at 12:38 AM
+-- Generation Time: Apr 17, 2022 at 12:50 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.22
 
@@ -138,9 +138,7 @@ CREATE TABLE `request_tb` (
 --
 
 INSERT INTO `request_tb` (`request_id`, `request_status`, `user_id`, `user_vaccine`, `user_dose`, `user_card_front`, `user_card_back`, `date`, `timestamp`) VALUES
-(1, 0, 1, 'BioNTech, Pfizer', 'First Dose', '1648925677.jpgimage/jpeg', '1648925677.jpgimage/jpeg', 'April 3, 2022 2:54:AM ', '2022-04-02 18:54:37'),
-(2, 0, 1, 'Johnson & Johnson', 'Booster Dose', '1648926422.jpg', '1648926422.jpg', 'April 3, 2022 3:07:AM ', '2022-04-02 19:07:01'),
-(3, 0, 1, 'Johnson & Johnson', 'Second Dose', '1648926590.png', '1648926590.png', 'April 3, 2022 3:09:AM ', '2022-04-02 19:09:49');
+(3, 1, 1, 'Johnson & Johnson', 'Second Dose', '1648785423.jpg', '1648785423.jpg', 'April 3, 2022 3:09:AM ', '2022-04-02 19:09:49');
 
 -- --------------------------------------------------------
 
@@ -211,10 +209,9 @@ CREATE TABLE `users_tb` (
 --
 
 INSERT INTO `users_tb` (`user_id`, `user_uuid`, `user_email`, `user_password`, `user_contactno`, `user_avatar`, `user_first_name`, `user_middle_name`, `user_last_name`, `user_birthday`, `user_gender`, `user_country`, `user_zipcode`, `user_city`, `user_address`, `user_card_front`, `user_card_back`, `user_vaccine`, `user_dose`, `user_status`, `user_verification`, `user_type`, `forgot_password`) VALUES
-(1, '0x5f1775f86786759dc51083bc233bf5f9', 'mashwishi@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 69000000012, '1648639829.png', 'Mathew Agustin', 'Ordoñez', 'Bella', '07/04/2000', 'Male', 'Philippines', '4114', 'Dasmarinas', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', 'Moderna', 'First Dose', 1, 1, 1, NULL),
-(2, '0x52c9f2d2ba7c166497b743eb834349aa', 'shiro@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 69000000000, 'female.jpg', 'Charneen', 'Valdez', 'Salve', '29/07/1998', 'Female', 'Philippines', '4114', 'Dasmarinas City', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', 'Moderna', 'Second Dose', 2, 0, 0, NULL),
-(10, '0xfe55db489b52d47ec3325c0f450e0282', 'exarus@mail.com', 'fe01ce2a7fbac8fafaed7c982a04e229', 9545585485, 'null.png', 'JOHN ', 'MICHAEL', 'DENISA', '1999-04-28', 'Male', 'Philippines', '4104', 'Imus Cavite', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', 'BioNTech, Pfizer', 'Booster Dose', 1, 1, 0, NULL),
-(18, '0x9ced8d9bdbfbe243dab1fd99d8063b95', 'mathewagustinbella@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3213213213, '1648786839.jpg', 'dawdaw', 'dawdawd', 'aw', '2022-04-13', 'Male', 'Philippines', '23123', 'dawdawdaw', 'XXXXXXXXX', '1648786839.jpgimage/jpeg', '1648786839.pngimage/png', 'Sputnik Light', 'Second Dose', 2, 1, 0, NULL);
+(1, '0x5f1775f86786759dc51083bc233bf5f9', 'mashwishi@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 69000000012, '1648639829.png', 'Mathew Agustin', 'Ordoñez', 'Bella', '07/04/2000', 'Male', 'Philippines', '4114', 'Dasmarinas', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', '1648785423.jpg', '1648785423.jpg', 'Johnson & Johnson', 'Second Dose', 1, 1, 1, NULL),
+(2, '0x52c9f2d2ba7c166497b743eb834349aa', 'shiro@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 69000000000, 'female.jpg', 'Charneen', 'Valdez', 'Salve', '29/07/1998', 'Female', 'Philippines', '4114', 'Dasmarinas City', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', '1648785423.jpg', '1648785423.jpg', 'Moderna', 'Second Dose', 0, 1, 0, NULL),
+(10, '0xfe55db489b52d47ec3325c0f450e0282', 'exarus@mail.com', 'fe01ce2a7fbac8fafaed7c982a04e229', 9545585485, 'null.png', 'JOHN ', 'MICHAEL', 'DENISA', '1999-04-28', 'Male', 'Philippines', '4104', 'Imus Cavite', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', '?PNG\r\n\Z\n\0\0\0\rIHDR\0\0 \0\0X\0\0\0?v?p\0\0\0	pHYs\0\0\0\0??~?\0\0 \0IDATx???y?\\W}??????-Y????K?nٲ?-K??K?3??0	?gf@2??IHxl??0?$???3,66??WY??]???Zj���?-uw?珪?u????қ??ϛ?Znݪ?u?u?u???\\{?\0\0\0\0??\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0 \0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\0\0\0\0\0\0\0\0\0@\0\0', 'BioNTech, Pfizer', 'Booster Dose', 1, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -229,15 +226,16 @@ CREATE TABLE `user_reports` (
   `status` varchar(255) NOT NULL,
   `message` varchar(255) DEFAULT NULL,
   `date` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `report_status` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_reports`
 --
 
-INSERT INTO `user_reports` (`report_id`, `provider_id`, `user_id`, `status`, `message`, `date`, `timestamp`) VALUES
-(3, 1, 2, 'Positive to Covid', 'test', 'March 30, 2022 7:26:PM ', '2022-03-30 11:26:09');
+INSERT INTO `user_reports` (`report_id`, `provider_id`, `user_id`, `status`, `message`, `date`, `timestamp`, `report_status`) VALUES
+(3, 1, 2, 'Sharing QR Code', 'test', 'March 30, 2022 7:26:PM ', '2022-03-30 11:26:09', 1);
 
 --
 -- Indexes for dumped tables

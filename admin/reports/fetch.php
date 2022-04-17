@@ -36,6 +36,8 @@ SELECT
     users_tb.user_first_name,
     users_tb.user_last_name,
     user_reports.status,
+    user_reports.report_id,
+    user_reports.report_status,
     user_reports.date
 FROM users_tb
 JOIN user_reports
@@ -47,7 +49,7 @@ JOIN provider_tb
 if($_POST['query'] != '')
 {
   $query .= '
- WHERE provider_name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" 
+ WHERE report_id LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" 
   ';
 }
 
@@ -74,6 +76,7 @@ $output = '
   <table>
 	  <thead>
 		  <tr>
+        <th>Report ID</th>
 			  <th>Provider</th>
 			  <th>User</th>
 			  <th>Status</th>
@@ -93,16 +96,28 @@ if($total_data > 0)
 {
   foreach($result as $row)
   {
-
-            $output .= '
-            <tr>
-              <td>'.$row["provider_name"].'</td>
-              <td>'.$row["user_first_name"].' '.$row["user_last_name"].'</td>
-              <td>'.$row["status"].'</td>
-              <td>'.$row["date"].'</td>
-              <td></td>
-            </tr>
-            ';
+    if($row["report_status"]  === '1'){
+      $output .= '
+      <tr>
+        <td>'.$row["report_id"].'</td>
+        <td>'.$row["provider_name"].'</td>
+        <td>'.$row["user_first_name"].' '.$row["user_last_name"].'</td>
+        <td>'.$row["status"].'</td>
+        <td>'.$row["date"].'</td>
+        <td><a class="status completed" style="background-color: #808080 !important; border: none; outline: none;" href="/admin/reports/requestData?ReportID='. $row['report_id'] .'">Reviewed</a></td>
+      </tr>
+      ';
+    }else{
+      $output .= '
+      <tr>
+        <td>'.$row["provider_name"].'</td>
+        <td>'.$row["user_first_name"].' '.$row["user_last_name"].'</td>
+        <td>'.$row["status"].'</td>
+        <td>'.$row["date"].'</td>
+        <td><a class="status completed" style="border: none; outline: none;" href="/admin/reports/requestData?ReportID='. $row['report_id'] .'">Review</a></td>
+      </tr>
+      ';
+    }
   }
 }
 else
