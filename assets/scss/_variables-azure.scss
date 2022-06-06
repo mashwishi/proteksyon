@@ -1,0 +1,84 @@
+// Define Theme Colors
+$theme-accent:          #1965ff;
+$theme-secondary:       #73e3ff;
+
+$accent-100:            #9cc2f7;
+$accent-200:            #8cb2ff;
+
+$danger:                #f65858;
+$success:               #3dca93;
+
+$bg-accent:             $theme-accent;
+$bg-accent-light:       #2766bb;
+$bg-accent-dark:        #1b47a1;
+
+//@themeBG
+$bg-light:              #f7f9fe;
+$bg-lighter:            #f7fafe;
+
+$bg-dark:               #151c2e;
+
+// Base Color
+$base-text:             #7d92bb;
+$base-color:            #4b556e;
+$base-medium:           #4b556e;
+$base-dark:             #2d313d;
+$base-light:            #a1a9ba;
+$base-lighter:          #ced4ff;
+$white:                 #fff;
+
+// Border Colors
+$border-color:          #e7e8ff;
+$border-light:          rgba(#f7f8ff,.1);
+
+$base-font:             'Roboto', sans-serif;
+$base-font-alt:         $base-font;
+
+$nioicon:               $icomoon-font-family;
+
+$base-font-size:        16px;
+$base-line-height:      1.6;
+$base-font-weight:      300;
+
+$fs-lead:			    1.125rem;
+$fs-small:			    .75rem;
+$fs-h1:				    2.25rem;
+$fs-h2:				    2.25rem;
+$fs-h3:				    1.5rem;
+$fs-h4:				    1.25rem;
+$fs-h5:				    1rem;
+$fs-h6:				    1rem;
+
+$fs-lead-sm:			1.25rem;
+$fs-small-sm:			.75rem;
+$fs-h1-sm:			    3.25rem;
+$fs-h2-sm:				2.5rem;
+$fs-h3-sm:				2rem;
+$fs-h4-sm:				1.5rem;
+$fs-h5-sm:				1.125rem;
+$fs-h6-sm:				1rem;
+
+$base-fw-lt: 			300;
+$base-fw-rg: 			400;
+$base-fw-md: 			500;
+$base-fw-bold: 			700;
+
+$base-fw-strong: 		$base-fw-md;
+
+$heading-font:          $base-font-alt;
+$heading-font-weight:   $base-fw-bold;
+
+// Text Color Default
+$text-color:            $base-color;
+$text-color-alt:        $base-light;
+$text-dark:             $base-dark;
+$text-light:            $base-light;
+$text-primary:          $theme-accent;
+$text-secondary:        $theme-secondary;
+$text-light-alt:        $base-lighter;
+
+$heading-color:         $base-color;
+$heading-color-alt:     $theme-accent;
+$heading-dark:          $base-dark;
+$heading-light:         $base-light;
+$heading-color-revert:	#fff;

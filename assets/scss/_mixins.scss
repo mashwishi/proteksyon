@@ -1,0 +1,13 @@
+@mixin fonts($size, $height: '', $weight: '') {
+	@if $size {
+    	font-size: $size;
+    } @else {
+    	font-size: $font-size;
+    }
+    @if $height !='' {
+    	line-height: $height;
+    }
+    @if $weight !='' {
+    	font-weight: $weight;
+    }
+}
