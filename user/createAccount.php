@@ -156,7 +156,7 @@ include '../db_conn.php';
                                                     ':user_dose' => $dose
                                                 ]);    
                                             
-                                                
+                                            
                                                 if (!$conn->error) {
 
                                                         $link = "<a href='https://proteksyon.ml/user/verify?UUID=".$uuid."'>Click to verify your email</a>";

@@ -1,7 +1,7 @@
 {
   "web_apps": [
     {
-      "manifest": "http://localhost/manifest.json",
+      "manifest": "http://proteksyon.ml/manifest.json",
       "details": {
         "paths": ["/*"]
       }

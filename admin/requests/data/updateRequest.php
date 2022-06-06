@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    $conn = mysqli_connect("localhost", "root", "", "proteksyon");
+    $conn = mysqli_connect("localhost", "root", "", "proteksyon.ml");
 
     $user_idx = $_POST['user_id'];
     $request_idx = $_POST['request_id'];

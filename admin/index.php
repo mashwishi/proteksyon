@@ -20,7 +20,6 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 	$user_address = $_SESSION['admin_user_address'];
 
 	$user_contactno = $_SESSION['admin_user_contactno'];
-
 ?>
 <html lang="en">
 <head>
@@ -55,7 +54,10 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/css/dashboard.css">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-
+	<style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>    
     <!-- Java Scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -77,16 +79,16 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 			});
 		} 
 
-		fetch_recent_providers();
-		function fetch_recent_providers(query)
+		fetch_recent_establishment();
+		function fetch_recent_establishment(query)
 		{
 			$.ajax({
-			url:"./fetch/recent_provider.php",
+			url:"./fetch/recent_establishment.php",
 			method:"post",
 			data:{query:query},
 			success:function(data)
 			{
-				$('#recent_providers').html(data);
+				$('#recent_establishment').html(data);
 			}
 			});
 		} 
@@ -135,56 +137,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 			</span>
 			
 		</a>
-		<ul class="side-menu top">
-			<li class="active">
-				<a href="/admin">
-					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/users">
-					<i class='bx bx-user' ></i>
-					<span class="text">Users</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/providers">
-					<i class='bx bx-building' ></i>
-					<span class="text">Providers</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/verification">
-					<i class='bx bx-list-check' ></i>
-					<span class="text">Verification</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/requests">
-					<i class='bx bxs-inbox' ></i>
-					<span class="text">Requests</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/reports">
-					<i class='bx bxs-megaphone' ></i>
-					<span class="text">Reports</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/settings">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/logout" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
-		</ul>
+		<?php include './sidebar.php'; ?>
 	</section>
 	<!-- SIDEBAR -->
 
@@ -235,7 +188,6 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 							<tr>
 								<th>User</th>
 								<th>Email</th>
-								<th>Option</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -245,11 +197,11 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 				</div>
 				<div class="todo">
 					<div class="head">
-						<h3>Recent Providers</h3>
+						<h3>Recent Establishment</h3>
 						<i class=''></i>
 						<i class=''></i>
 					</div>
-					<ul class="todo-list" id="recent_providers">
+					<ul class="todo-list" id="recent_establishment">
 					</ul>
 				</div>
 			</div>

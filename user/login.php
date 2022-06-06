@@ -62,8 +62,9 @@
           }
       }     
     </script>
-    	<style>
-        img[alt*="www.000webhost.com"] { display: none!important; }
+        <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
     </style>
   </head>
   <body>
@@ -129,6 +130,12 @@
         <a href="/scanner">
             <i class="fa fa-qrcode map-before"></i>
             <button class="map">Login as Scanner</button>
+        </a>
+    </p>
+    <p>
+        <a href="/establishment">
+            <i class="fas fa-shield-virus map-before"></i>
+            <button class="map">Login as Establishment</button>
         </a>
     </p>
 

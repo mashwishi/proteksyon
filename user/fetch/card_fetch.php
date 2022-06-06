@@ -2,7 +2,7 @@
     session_start();
 
     $user_id = $_SESSION['user_id'];
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_id = $user_id";

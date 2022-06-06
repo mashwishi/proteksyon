@@ -27,55 +27,55 @@ if (isset($_POST['scanner_email']) && isset($_POST['scanner_password'])) {
 
 			if($responseData->success) {
 				
-				$stmt = $conn->prepare("SELECT * FROM provider_tb WHERE provider_email=?");
+				$stmt = $conn->prepare("SELECT * FROM establishment_tb WHERE establishment_email=?");
 				$stmt->execute([$pemail]);
 		
 				if ($stmt->rowCount() === 1) {
 
-					$provider = $stmt->fetch();
+					$establishment = $stmt->fetch();
 
-					$provider_id = $provider['provider_id'];
-					$provider_verified = $provider['provider_verified'];
+					$establishment_id = $establishment['establishment_id'];
+					$establishment_verified = $establishment['establishment_verified'];
 
-					$provider_email = $provider['provider_email'];
-					$provider_password = $provider['provider_password'];
+					$establishment_email = $establishment['establishment_email'];
+					$establishment_password = $establishment['establishment_password'];
 
-					$provider_name = $provider['provider_name'];
-					$provider_contactno = $provider['provider_contactno'];
+					$establishment_name = $establishment['establishment_name'];
+					$establishment_contactno = $establishment['establishment_contactno'];
 
-					$provider_country = $provider['provider_country'];
-					$provider_city = $provider['provider_city'];
-					$provider_zipcode = $provider['provider_zipcode'];
-					$provider_address = $provider['provider_address'];
+					$establishment_country = $establishment['establishment_country'];
+					$establishment_city = $establishment['establishment_city'];
+					$establishment_zipcode = $establishment['establishment_zipcode'];
+					$establishment_address = $establishment['establishment_address'];
 
-					$provider_longitude = $provider['provider_longitude'];
-					$provider_latitude = $provider['provider_latitude'];
+					$establishment_longitude = $establishment['establishment_longitude'];
+					$establishment_latitude = $establishment['establishment_latitude'];
 			
-					$provider_image = $provider['provider_image'];
+					$establishment_image = $establishment['establishment_image'];
 		
-					if ($pemail === $provider_email) {
+					if ($pemail === $establishment_email) {
 						$passa = md5($ppassword);
 						//$passa = $password;
-						if ($passa === $provider_password) {
+						if ($passa === $establishment_password) {
 
-							$_SESSION['provider_id'] = $provider_id;
-							$_SESSION['provider_verified'] = $provider_verified;
+							$_SESSION['establishment_id'] = $establishment_id;
+							$_SESSION['establishment_verified'] = $establishment_verified;
 
-							$_SESSION['provider_email'] = $provider_email;
-							$_SESSION['provider_password'] = $provider_password;
+							$_SESSION['establishment_email'] = $establishment_email;
+							$_SESSION['establishment_password'] = $establishment_password;
 
-							$_SESSION['provider_name'] = $provider_name;
-							$_SESSION['provider_contactno'] = $provider_contactno;
+							$_SESSION['establishment_name'] = $establishment_name;
+							$_SESSION['establishment_contactno'] = $establishment_contactno;
 
-							$_SESSION['provider_country'] = $provider_country;
-							$_SESSION['provider_city'] = $provider_city;
-							$_SESSION['provider_zipcode'] = $provider_zipcode;
-							$_SESSION['provider_address'] = $provider_address;
+							$_SESSION['establishment_country'] = $establishment_country;
+							$_SESSION['establishment_city'] = $establishment_city;
+							$_SESSION['establishment_zipcode'] = $establishment_zipcode;
+							$_SESSION['establishment_address'] = $establishment_address;
 
-							$_SESSION['provider_longitude'] = $provider_longitude;
-							$_SESSION['provider_latitude'] = $provider_latitude;
+							$_SESSION['establishment_longitude'] = $establishment_longitude;
+							$_SESSION['establishment_latitude'] = $establishment_latitude;
 
-							$_SESSION['provider_image'] = $provider_image;
+							$_SESSION['establishment_image'] = $establishment_image;
 
 							//$ipv4 = $_SERVER['REMOTE_ADDR'];
 							//$sql = "UPDATE users_tb SET ip_address='$ipv4' WHERE user_email='$email'";

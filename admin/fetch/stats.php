@@ -1,7 +1,8 @@
 <?php
     session_start();
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $aquery = "SELECT COUNT(user_id) AS TotalUsers FROM users_tb";
@@ -10,7 +11,7 @@
     $bquery = "SELECT COUNT(DISTINCT user_id) AS UniqueVisitors FROM logs_tb";
     $bresult = mysqli_query($connect, $bquery);
 
-    $cquery = "SELECT COUNT(status) AS ExposedCovid FROM logs_tb WHERE `status` IS NOT NULL;";
+    $cquery = "SELECT COUNT(report_id) as Appeal FROM user_reports";
     $cresult = mysqli_query($connect, $cquery);
     
         if(mysqli_num_rows($aresult) > 0){
@@ -23,24 +24,24 @@
                     { 
                         $output .= '
                         <li>
-                        <i class="bx bxs-calendar-check" ></i>
+                        <i class="bx bxs-group" ></i>
                         <span class="text">
                             <h3 class="counter" data-target="'.$arow["TotalUsers"].'" id="total-users">~</h3>
                             <p>Total Users</p>
                         </span>
                         </li>
                         <li>
-                            <i class="bx bxs-group" ></i>
+                            <i class="bx bxs-user" ></i>
                             <span class="text">
                                 <h3 class="counter" data-target="'.$brow["UniqueVisitors"].'" id="visitors">~</h3>
                                 <p>Unique Visitors</p>
                             </span>
                         </li>
                         <li>
-                            <i class="bx bxs-virus"></i>
+                            <i class="bx bxs-file-blank"></i>
                             <span class="text">
-                                <h3 class="counter" data-target="'.$crow["ExposedCovid"].'" id="exposed">~</h3>
-                                <p>Exposed to Covid</p>
+                                <h3 class="counter" data-target="'.$crow["Appeal"].'" id="Appeal">~</h3>
+                                <p>Total Appeals</p>
                             </span>
                         </li>
 
@@ -74,8 +75,8 @@
                                     });
                                 });  
                                 
-                                document.getElementById("exposed").innerHTML = '.$crow["ExposedCovid"].';
-                                $("#exposed").each(async function() {
+                                document.getElementById("Appeal").innerHTML = '.$crow["Appeal"].';
+                                $("#Appeal").each(async function() {
                                     $(this).prop("Counter", 0).animate({
                                     Counter: $(this).text()
                                     }, {

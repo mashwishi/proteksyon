@@ -3,7 +3,7 @@
 $sName = "localhost";
 $uName = "root";
 $pass = "";
-$db_name = "proteksyon";
+$db_name = "proteksyon.ml";
 
 #remotemysql.com
 #$sName = "remotemysql.com";

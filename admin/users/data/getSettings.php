@@ -3,7 +3,7 @@
 
     $UUID = isset($_POST["UUID"]) ? $_POST["UUID"] : '';
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "SELECT * FROM users_tb WHERE user_uuid = '$UUID'";
@@ -56,7 +56,8 @@
                             </div>
                             <div class="col">
                                 <label for="inputContact">Contact</label>
-                                <input type="number" class="form-control" id="inputContact" name="contactno" required value="'. $row['user_contactno'] .'">
+                                <input type="number" class="form-control" id="inputContact" name="contactno" required value="'. $row['user_contactno'] .'" oninput="limit(this);" onkeydown="limit(this);" onkeyup="limit(this);">
+                                <script src="./data/contactNumber.js"></script>
                             </div>
                             <div class="col">
                             <label for="status">Status</label>';
@@ -115,7 +116,7 @@
                                 </label>
                             </div>
                         </div>
-                        <input type="submit" name="updateSettings" class="btn btn-primary" value="Update Settings">
+                        <input type="submit" name="updateSettings" class="btn btn-primary" id="forNumber" value="Update Settings">
                     </div>
                     ';                 
                 }            

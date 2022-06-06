@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  if (!isset($_SESSION['provider_id']) && !isset($_SESSION['provider_email'])) { 
+  if (!isset($_SESSION['establishment_id']) && !isset($_SESSION['establishment_email'])) { 
     $hcaptcha_sitekey = 'aaeec26b-2021-48e7-abd5-00c294ecfccd';
 ?>
 <html lang="en">
@@ -29,7 +29,11 @@
     <link href="../assets/images/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="../assets/images/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
 
-    
+    </script>
+        <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
     <!-- Fav Icon  -->
@@ -54,7 +58,8 @@
       }     
     </script>
         <style>
-        img[alt*="www.000webhost.com"] { display: none !important; }
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
     </style>
   </head>
   
@@ -123,9 +128,15 @@
     </form>
 
     <p>
-        <a href="/provider">
+        <a href="/establishment">
             <i class="fas fa-shield-virus map-before"></i>
-            <button class="map">Login as Provider</button>
+            <button class="map">Login as Establishment</button>
+        </a>
+    </p>
+    <p>
+        <a href="/user">
+            <i class="fas fa-user map-before"></i>
+            <button class="map">Login as User</button>
         </a>
     </p>
 

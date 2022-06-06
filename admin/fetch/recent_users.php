@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "
@@ -24,7 +24,6 @@
                             <p>'. $row['user_first_name'] . ' ' . $row['user_last_name'] .'</p>
                             </td>
                             <td>'. $row['user_email'] .'</td>
-                            <td><a class="status completed" style="border: none; outline: none;" href="/admin/approveUser?userUUID='. $row['user_uuid'] .'">Approve</a></td>
                     </tr>
                     ';                  
             }            

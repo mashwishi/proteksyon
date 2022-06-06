@@ -45,7 +45,11 @@
     <link rel="stylesheet" href="./assets/css/user_login.css">
     <link rel="stylesheet" href="../ios/style.css">
 
-
+    </script>
+        <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>
     
     <script type="text/javascript">
       window.addEventListener('load', () => {

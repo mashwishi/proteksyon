@@ -1,9 +1,10 @@
 <?php
+
     session_start();
 
     $UUID = isset($_POST["UUID"]) ? $_POST["UUID"] : '';
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "SELECT * FROM users_tb where user_uuid = '$UUID'";
@@ -23,12 +24,14 @@
                             </div>                     
                         </div>
                         <div class="container-approval"> 
-                            <button id="approve" onclick="timeIn()" class="approve-btn btn-success">APPROVE</button>
-                            <button id="cancel" onclick="scanAgain()" class="cancel-btn btn-danger">CANCEL</button>
-                        </div>                                          
+                            <button id="approve"  onclick="timeIn()"  class="approve-btn btn-success" >APPROVE</button>
+                            <button  id="cancel" onclick="scanAgain()" class="cancel-btn btn-danger" >CANCEL</button>
+                        </div>     
+                        <input type="text" id="UUIDInput" name="UUIDInput" value="'. $row['user_uuid'] .'" style="visibility: hidden !important" readonly> 
                         ';
 
             }
+
             echo $output;
             // Close DB Connection
             $connect -> close();  

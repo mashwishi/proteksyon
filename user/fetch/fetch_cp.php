@@ -31,7 +31,7 @@
 
                 if($newPass == $confirmPass){
                     
-                    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+                    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
                     $output = '';
                 
                     $query = "
@@ -61,7 +61,7 @@
                                 $conn -> close(); 
                                 $connect -> close(); 
                             }else{
-                                header("Location: /user/forgot_password?error=Invalid Request");
+                                header("Location: /user/forgot_password?error=Invalid Key, Password Confirmation has been already used.");
                                 $conn -> close();
                                 $connect -> close();  
                             }

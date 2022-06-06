@@ -3,7 +3,7 @@
 
     $user_id = $_SESSION['admin_user_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
 
@@ -14,7 +14,7 @@
             $output .= '';
             while($row = mysqli_fetch_array($result))
             {
-                $output .= $row['user_last_name'] . ', ' . $row['user_first_name'];  
+                $output .= $row['user_first_name'] . ' ' . $row['user_last_name'];  
                 echo $output;
                 // Close DB Connection
                 $connect -> close();               

@@ -48,7 +48,11 @@
     <link href="../assets/images/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="../assets/images/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="../assets/images/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-
+    </script>
+        <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/favicon.png">
     <!-- Site Title  -->
@@ -101,15 +105,15 @@
               <p>
                 <select name="vaccine" id='vaccine' onclick="this.className = ''">
                     <option value="BioNTech, Pfizer">BioNTech, Pfizer</option>
+					<option value="Sinovac-CoronaVac">Sinovac-CoronaVac</option>   
                     <option value="Moderna">Moderna</option>
                     <option value="Johnson & Johnson">Johnson& Johnson </option>
                     <option value="Sputnik V ">Sputnik V </option>
                     <option value="Sputnik Light">Sputnik Light</option>
                     <option value="Sinopham BBIBP">Sinopham BBIBP</option>
                     <option value="Oxford, Astraženeca">Oxford, Astraženeca</option>
-                    <option value="Novavax ">Novavax</option>
-                    <option value="CoronaVac ">CoronaVac</option>          
-                    <option value="Covaxin ">Covaxin</option>                                                                                                                                                                             
+                    <option value="Novavax ">Novavax</option>        
+                    <option value="Covaxin ">Covaxin</option>                                                                                                                                                                           
                 </select>  
               </p>
               Dose:

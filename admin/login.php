@@ -54,7 +54,8 @@
       }     
     </script>
         <style>
-        img[alt*="www.000webhost.com"] { display: none !important; }
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
     </style>
   </head>
   

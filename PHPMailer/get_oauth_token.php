@@ -128,7 +128,7 @@ class Google extends AbstractProvider
 
 
 //Set Redirect URI in Developer Console as [https/http]://<yourdomain>/<folder>/get_oauth_token.php
-$provider = new Google(
+$establishment = new Google(
     array(
         'clientId' => $clientId,
         'clientSecret' => $clientSecret,
@@ -140,8 +140,8 @@ $provider = new Google(
 
 if (!isset($_GET['code'])) {
     // If we don't have an authorization code then get one
-    $authUrl = $provider->getAuthorizationUrl();
-    $_SESSION['oauth2state'] = $provider->getState();
+    $authUrl = $establishment->getAuthorizationUrl();
+    $_SESSION['oauth2state'] = $establishment->getState();
     header('Location: ' . $authUrl);
     exit;
 // Check given state against previously stored one to mitigate CSRF attack
@@ -150,7 +150,7 @@ if (!isset($_GET['code'])) {
     exit('Invalid state');
 } else {
     // Try to get an access token (using the authorization code grant)
-    $token = $provider->getAccessToken(
+    $token = $establishment->getAccessToken(
         'authorization_code',
         array(
             'code' => $_GET['code']

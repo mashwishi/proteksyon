@@ -18,7 +18,7 @@
 
             if(!empty($oldPass) || !empty($newPass) || !empty($confirmPass)){
 
-                $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+                $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
                 $output = '';
             
                 $query = "

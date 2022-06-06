@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    $conn = mysqli_connect("localhost", "root", "", "proteksyon");
+    $conn = mysqli_connect("localhost", "root", "", "proteksyon.ml");
 
     $UUIDx = $_POST['user_uuid'];
 

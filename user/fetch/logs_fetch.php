@@ -3,13 +3,13 @@
 
     $user_id = $_SESSION['user_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "
-    SELECT  logs_tb.logs_id, logs_tb.time_in, logs_tb.status, users_tb.user_id, provider_tb.provider_name, provider_tb.provider_contactno, provider_tb.provider_longitude, provider_tb.provider_latitude
-    FROM provider_tb, users_tb, logs_tb
-    WHERE provider_tb.provider_id = logs_tb.provider_id and users_tb.user_id = logs_tb.user_id and users_tb.user_id = $user_id
+    SELECT  logs_tb.logs_id, logs_tb.time_in, logs_tb.status, users_tb.user_id, establishment_tb.establishment_name, establishment_tb.establishment_contactno, establishment_tb.establishment_longitude, establishment_tb.establishment_latitude
+    FROM establishment_tb, users_tb, logs_tb
+    WHERE establishment_tb.establishment_id = logs_tb.establishment_id and users_tb.user_id = logs_tb.user_id and users_tb.user_id = $user_id
     ORDER BY logs_tb.logs_id DESC
     ";
 
@@ -26,11 +26,11 @@
                         <div class="row">
                             <ul id="status-ul-list">
                                 <li id="status-list" style="background-image: linear-gradient(90deg,#555555 10px,rgb(238, 238, 238) 10px,#EEE 11px,transparent 11px);">
-                                    <h3>'. $row['provider_name'] .'</h3>
+                                    <h3>'. $row['establishment_name'] .'</h3>
                                     <div class="status-right status-top">
                                         <i class="far fa-calendar"></i> Time in: '. $row['time_in'] .'
                                     </div>                                        
-                                    <i class="fas fa-phone"></i> +'. $row['provider_contactno'] .' <b>|</b> <a href="https://www.google.com/maps/place/'. $row['provider_latitude'] .','. $row['provider_longitude'] .'/@'. $row['provider_latitude'] .','. $row['provider_longitude'] .',19.75z" target="_blank">Open in Google Map</a>
+                                    <i class="fas fa-phone"></i> +'. $row['establishment_contactno'] .' <b>|</b> <a href="https://www.google.com/maps/place/'. $row['establishment_latitude'] .','. $row['establishment_longitude'] .'/@'. $row['establishment_latitude'] .','. $row['establishment_longitude'] .',19.75z" target="_blank">Open in Google Map</a>
                                 </li>
                             </ul>
                         </div>            
@@ -43,11 +43,11 @@
                             <div class="row">
                                 <ul id="status-ul-list">
                                     <li id="status-list" style="background-image: linear-gradient(90deg,#EC3434 10px,rgb(238, 238, 238) 10px,#EEE 11px,transparent 11px);">
-                                        <h3>'. $row['provider_name'] .'</h3>
+                                        <h3>'. $row['establishment_name'] .'</h3>
                                         <div class="status-right status-top">
                                             <i class="far fa-calendar"></i> Time in: '. $row['time_in'] .' <b>|</b> <i class="far fa-comment-alt"></i> '. $row['status'] .'
                                         </div>                                        
-                                        <i class="fas fa-phone"></i> +'. $row['provider_contactno'] .' <b>|</b> <a href="https://www.google.com/maps/place/'. $row['provider_latitude'] .','. $row['provider_longitude'] .'/@'. $row['provider_latitude'] .','. $row['provider_longitude'] .',19.75z" target="_blank">Open in Google Map</a>
+                                        <i class="fas fa-phone"></i> +'. $row['establishment_contactno'] .' <b>|</b> <a href="https://www.google.com/maps/place/'. $row['establishment_latitude'] .','. $row['establishment_longitude'] .'/@'. $row['establishment_latitude'] .','. $row['establishment_longitude'] .',19.75z" target="_blank">Open in Google Map</a>
                                     </li>
                                 </ul>
                             </div>            

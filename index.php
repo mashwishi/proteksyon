@@ -1,9 +1,17 @@
 <html lang="zxx" class="js">
 <head>
-<meta charset="UTF-8">
+	
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="">
+	
+	<meta property="og:title" content="Proteksyon - Virtual Vaccination ID and Contact Tracing">
+	<meta property="og:site_name" content="Proteksyon">
+	<meta property="og:url" content="proteksyon.ml">
+	<meta property="og:description" content="Contact tracing is key to slowing the spread of COVID-19 and helps protect you, your family, and your community.">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://i.imgur.com/jQgr6lx.jpg">
 
     <link rel="manifest" href="./manifest.json">
     <!-- ios support -->
@@ -25,7 +33,11 @@
 
     <meta name="apple-mobile-web-app-status-bar" content="#db4938">
     <meta name="theme-color" content="#db4938">
-
+    </script>
+        <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="images/favicon.png">
     <!-- Site Title  -->
@@ -88,10 +100,9 @@
                         <nav class="nk-navbar-menu nk-navbar-menu-between" id="navbar-menu">
                             <ul class="nk-menu">
                                 <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="#symptoms">Symptoms</a></li>
-                                <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="#spread">Spread</a></li>
                                 <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="#prevention">Prevention</a></li>
-                                <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="#protect">Do &amp; Don't</a></li>
-                                <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="#faq">FAQ</a></li>
+                                <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="/terms-and-condition">Terms and Condition</a></li>
+                                <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="/privacy-policy">Privacy Policy</a></li>
                                 <li class="nk-menu-item"><a class="scrollto nav-link nk-menu-link" href="#about">About Corona</a></li>
                             </ul>
                             <ul class="nk-menu-btns">
@@ -113,14 +124,14 @@
                             <div class="nk-banner-s2-block pr-xl-5">
                                 <div class="content">
                                     <h6 class="sub-title"><span class="badge badge-danger">Covid-19</span> <span>Coronavirus</span></h6>
-                                    <h1 class="title">Virtual Vaccination ID  <br class="d-none d-sm-block">and Contact Tracing</h1>
+                                    <h1 class="title">Multi-Platform Contact Tracing with <br class="d-none d-sm-block">QR Verification System for Barangay Sabang</h1>
                                     <p>The best way to prevent and slow down transmission is be well informed 
                                         about the COVID-19 virus. Protect yourself and others from infection by 
                                         washing your hands at-least 20sec and not touching your face. </p>
     
-                                    <ul class="nk-banner-btns">
-                                        <li><a href="#protect" class="btn scrollto"><span><i class="fab fa-android"></i>&nbsp; Download Application</span></a></li>
-                                        <li><a href="#about" class="btn btn-transparent scrollto"><span><i class="fas fa-qrcode"></i>&nbsp; Scanner for Provider</span><em class="icon ni ni-arrow-right"></em></a></li>
+                                        <ul class="nk-banner-btns">
+                                        <li><a href="/user" class="btn scrollto"><span><i class="fas fa-user"></i>&nbsp; Open Web Application</span></a></li>
+                                        <li><a href="/scanner" class="btn btn-transparent scrollto"><span><i class="fas fa-qrcode"></i>&nbsp; Login as Scanner</span><em class="icon ni ni-arrow-right"></em></a></li>
                                     </ul>
                                 </div><!-- .content -->
                             </div><!-- .nk-banner-block -->
@@ -881,7 +892,7 @@
                                                 <h5 class="accordion-title collapsed" data-toggle="collapse" data-target="#covid-symptoms-03">Where can I get tested for COVID-19?<span class="accordion-icon"></span></h5>
                                                 <div id="covid-symptoms-03" class="collapse">
                                                     <div class="accordion-content">
-                                                        <p>The process and locations for testing vary from place to place. Contact your state, local, tribal, or territorial department for more information, or reach out to a medical provider. State and local public health departments have received tests from CDC while medical providers are getting tests developed by commercial manufacturers. While supplies of these tests are increasing, it may still be difficult to find someplace to get tested.</p>
+                                                        <p>The process and locations for testing vary from place to place. Contact your state, local, tribal, or territorial department for more information, or reach out to a medical provider. State and local public health departments have received tests from CDC while medical establishment are getting tests developed by commercial manufacturers. While supplies of these tests are increasing, it may still be difficult to find someplace to get tested.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -914,7 +925,7 @@
                                                         <ul class="list-dot">
                                                             <li><strong>Continue practicing everyday preventive actions. </strong>Cover coughs and sneezes with a tissue and wash your hands often with soap and water for at least 20 seconds. If soap and water are not available, use a hand sanitizer that contains 60% alcohol. Clean frequently touched surfaces and objects daily using a regular household detergent and water.</li>
                                                             <li><strong>Notify your workplace as soon as possible if your regular work schedule changes.</strong> Ask to work from home or take leave if you or someone in your household gets sick with <a href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html" target="_blank">COVID-19 symptoms</a>, or if your child’s school is dismissed temporarily. <a href="https://www.cdc.gov/coronavirus/2019-ncov/specific-groups/guidance-business-response.html" target="_blank">Learn how businesses and employers can plan for and respond to COVID-19.</a></li>
-                                                            <li><strong>Stay in touch with others by phone or email. </strong>If you have a chronic medical condition and live alone, ask family, friends, and health care providers to check on you during an outbreak. Stay in touch with family and friends, especially those at increased risk of developing severe illness, such as older adults and people with severe chronic medical conditions.</li>
+                                                            <li><strong>Stay in touch with others by phone or email. </strong>If you have a chronic medical condition and live alone, ask family, friends, and health care establishment to check on you during an outbreak. Stay in touch with family and friends, especially those at increased risk of developing severe illness, such as older adults and people with severe chronic medical conditions.</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -1095,8 +1106,8 @@
                                     <li><a class="scrollto" href="#symptoms">Symptoms</a></li>
                                     <li><a class="scrollto" href="#prevention">Prevention</a></li>
                                     <li><a class="scrollto" href="#protect">Protect Youself</a></li>
-                                    <li><a class="scrollto" href="#faq">FAQs</a></li>
-                                    <li><a class="scrollto" href="#about">About Corona</a></li>
+                                    <li><a class="scrollto" href="/terms-and-condition">Terms and Condition</a></li>
+                                    <li><a class="scrollto" href="/privacy-policy">Privacy Policy</a></li>
                                 </ul>
                             </div><!-- .wgs -->
                         </div><!-- .col -->
@@ -1141,8 +1152,8 @@
             </div>
 
             <div class="nk-offcanvas-cta">
-                <a href="/user" class="btn scrollto"><span><i class="fas fa-user"></i>&nbsp; Login as User</span></a>
-                <a href="/provider" class="btn scrollto"><i class="fas fa-map-marker-alt"></i>&nbsp; Login as Tracer</span></a>
+                <a href="/user" class="btn scrollto"><span><i class="fas fa-user"></i>&nbsp;&nbsp;User</span></a>
+                <a href="/establishment" class="btn scrollto"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Establishment</span></a>
             </div>
 
         </div>

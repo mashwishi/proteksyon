@@ -2,9 +2,13 @@
 error_reporting(0);
 session_start();
 
-	$database_username = 'root';
+  $user_uuid = $_SESSION['admin_user_uuid'];
+
+	$database_username ='root';
 	$database_password = '';
-	$connect = new PDO( 'mysql:host=localhost;dbname=proteksyon', $database_username, $database_password );
+	$connect = new PDO( 'mysql:host=localhost;dbname=proteksyon.ml', $database_username, $database_password );
+
+
 
 /*function get_total_row($connect)
 {
@@ -30,18 +34,46 @@ else
   $start = 0;
 }
 
-$query = "
-SELECT * FROM users_tb WHERE user_status = 0
-";
+//Health Center
+if($user_uuid == '0x926a09cc9dec481113888511b69c60f5'){
+  $query = "
+  SELECT * FROM users_tb WHERE user_status = 0
+  ";
+}
+//Barangay
+if($user_uuid == '0x833a5adfaa7b527480b2e02db7333e8d'){
+  $query = "
+  SELECT * FROM establishment_tb WHERE approved = 0
+  ";
+}
+
 
 if($_POST['query'] != '')
 {
-  $query .= '
- AND user_email LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" 
-  ';
+  //Health Center
+  if($user_uuid == '0x926a09cc9dec481113888511b69c60f5'){
+    $query .= '
+    AND user_email LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" 
+     ';
+  }
+  //Barangay
+  if($user_uuid == '0x833a5adfaa7b527480b2e02db7333e8d'){
+    $query .= '
+    AND establishment_email LIKE "%'.str_replace(' ', '%', $_POST['query']).'%" 
+     ';
+  }
 }
 
-$query .= 'ORDER BY user_id ASC ';
+//Health Center
+if($user_uuid == '0x926a09cc9dec481113888511b69c60f5'){
+  $query .= 'ORDER BY user_id ASC ';
+}
+//Barangay
+if($user_uuid == '0x833a5adfaa7b527480b2e02db7333e8d'){
+  $query .= 'ORDER BY establishment_id ASC ';
+}
+
+
 
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
@@ -79,106 +111,14 @@ $output = '
     $verified = '1'; //approve
     $ban = '2'; //banned 
 
-if($total_data > 0)
-{
-  foreach($result as $row)
-  {
-    if($row["user_verification"] === '1'){
-
-        if($row["user_status"]  === '0'){
-            $output .= '
-            <tr>
-              <td>
-                <img src="../../user/user_data/user_avatar/'.$row["user_avatar"].'" alt="'.$row["user_first_name"].'-avatar">	
-                '.$row["user_first_name"].' '.$row["user_last_name"].'<i class="fas fa-check-circle" style="color: #1EF0F0" alt="verified-card"></i>
-              </td>
-              <td>'.$row["user_email"].'</td>
-              <td>'.$row["user_contactno"].'</td>
-              <td><i class="fas fa-hourglass-end" style="color: #C4A90F" alt="processing"></i></td>
-              <td><a class="status completed" style="border: none; outline: none;" href="/admin/verification/modify?UUID='. $row['user_uuid'] .'">Review</a></td>
-            </tr>
-            ';
-        }elseif($row["user_status"]  === '1'){
-          $output .= '
-          <tr>
-            <td>
-              <img src="../../user/user_data/user_avatar/'.$row["user_avatar"].'" alt="'.$row["user_first_name"].'-avatar">	
-              '.$row["user_first_name"].' '.$row["user_last_name"].'<i class="fas fa-check-circle" style="color: #1EF0F0" alt="verified-card"></i>
-            </td>
-            <td>'.$row["user_email"].'</td>
-            <td>'.$row["user_contactno"].'</td>
-            <td><i class="fas fa-check" style="color: #0B8507" alt="approved"></i></td>
-            <td><a class="status completed" style="border: none; outline: none;" href="/admin/verification/modify?UUID='. $row['user_uuid'] .'">Review</a></td>
-          </tr>
-          ';
-        }else{
-          $output .= '
-          <tr>
-            <td>
-              <img src="../../user/user_data/user_avatar/'.$row["user_avatar"].'" alt="'.$row["user_first_name"].'-avatar">	
-              '.$row["user_first_name"].' '.$row["user_last_name"].'<i class="fas fa-check-circle" style="color: #1EF0F0" alt="verified-card"></i>
-            </td>
-            <td>'.$row["user_email"].'</td>
-            <td>'.$row["user_contactno"].'</td>
-            <td><i class="fas fa-times" style="color: #BD001C" alt="banned"></i></td>
-            <td><a class="status completed" style="border: none; outline: none;" href="/admin/verification/modify?UUID='. $row['user_uuid'] .'">Review</a></td>
-          </tr>
-          ';
-        }
-
-    }else{
-          if($row["user_status"]  === '0'){
-            $output .= '
-            <tr>
-              <td>
-                <img src="../../user/user_data/user_avatar/'.$row["user_avatar"].'" alt="'.$row["user_first_name"].'-avatar">	
-                '.$row["user_first_name"].' '.$row["user_last_name"].'
-              </td>
-              <td>'.$row["user_email"].'</td>
-              <td>'.$row["user_contactno"].'</td>
-              <td><i class="fas fa-hourglass-end" style="color: #C4A90F" alt="processing"></i></td>
-              <td><a class="status completed" style="border: none; outline: none;" href="/admin/verification/modify?UUID='. $row['user_uuid'] .'">Review</a></td>
-            </tr>
-            ';
-        }elseif($row["user_status"]  === '1'){
-          $output .= '
-          <tr>
-            <td>
-              <img src="../../user/user_data/user_avatar/'.$row["user_avatar"].'" alt="'.$row["user_first_name"].'-avatar">	
-              '.$row["user_first_name"].' '.$row["user_last_name"].'
-            </td>
-            <td>'.$row["user_email"].'</td>
-            <td>'.$row["user_contactno"].'</td>
-            <td><i class="fas fa-check" style="color: #0B8507" alt="approved"></i></td>
-            <td><a class="status completed" style="border: none; outline: none;" href="/admin/verification/modify?UUID='. $row['user_uuid'] .'">Review</a></td>
-          </tr>
-          ';
-        }else{
-          $output .= '
-          <tr>
-            <td>
-              <img src="../../user/user_data/user_avatar/'.$row["user_avatar"].'" alt="'.$row["user_first_name"].'-avatar">	
-              '.$row["user_first_name"].' '.$row["user_last_name"].'
-            </td>
-            <td>'.$row["user_email"].'</td>
-            <td>'.$row["user_contactno"].'</td>
-            <td><i class="fas fa-times" style="color: #BD001C" alt="banned"></i></td>
-            <td><a class="status completed" style="border: none; outline: none;" href="/admin/verification/modify?UUID='. $row['user_uuid'] .'">Review</a></td>
-          </tr>
-          ';
-        }
-    }
-
+  //Health Center
+  if($user_uuid == '0x926a09cc9dec481113888511b69c60f5'){
+      include './user_verification_table.php';
   }
-}
-else
-{
-  $output .= '
-  <tr>
-    <td colspan="2" align="center">No Data Found</td>
-  </tr>
-  ';
-}
+  //Barangay
+  if($user_uuid == '0x833a5adfaa7b527480b2e02db7333e8d'){
+      include './esta_verification_table.php';
+  }
 
 $output .= '
 </tbody>

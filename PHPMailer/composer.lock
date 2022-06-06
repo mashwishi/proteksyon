@@ -22,7 +22,7 @@
                 "shasum": ""
             },
             "require": {
-                "cilex/console-service-provider": "1.*",
+                "cilex/console-service-establishment": "1.*",
                 "php": ">=5.3.3",
                 "pimple/pimple": "~1.0",
                 "symfony/finder": "~2.1",
@@ -67,16 +67,16 @@
             "time": "2014-03-29T14:03:13+00:00"
         },
         {
-            "name": "cilex/console-service-provider",
+            "name": "cilex/console-service-establishment",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Cilex/console-service-provider.git",
+                "url": "https://github.com/Cilex/console-service-establishment.git",
                 "reference": "25ee3d1875243d38e1a3448ff94bdf944f70d24e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Cilex/console-service-provider/zipball/25ee3d1875243d38e1a3448ff94bdf944f70d24e",
+                "url": "https://api.github.com/repos/Cilex/console-service-establishment/zipball/25ee3d1875243d38e1a3448ff94bdf944f70d24e",
                 "reference": "25ee3d1875243d38e1a3448ff94bdf944f70d24e",
                 "shasum": ""
             },
@@ -120,7 +120,7 @@
                 "cilex",
                 "console",
                 "pimple",
-                "service-provider",
+                "service-establishment",
                 "silex"
             ],
             "time": "2012-12-19T10:50:58+00:00"

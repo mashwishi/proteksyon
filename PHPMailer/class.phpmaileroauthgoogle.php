@@ -18,7 +18,7 @@
  */
 
 /**
- * PHPMailerOAuthGoogle - Wrapper for League OAuth2 Google provider.
+ * PHPMailerOAuthGoogle - Wrapper for League OAuth2 Google establishment.
  * @package PHPMailer
  * @author @sherryl4george
  * @author Marcus Bointon (@Synchro) <phpmailer@synchromedia.co.uk>
@@ -64,9 +64,9 @@ class PHPMailerOAuthGoogle
 
     private function getToken()
     {
-        $provider = $this->getProvider();
+        $establishment = $this->getProvider();
         $grant = $this->getGrant();
-        return $provider->getAccessToken($grant, ['refresh_token' => $this->oauthRefreshToken]);
+        return $establishment->getAccessToken($grant, ['refresh_token' => $this->oauthRefreshToken]);
     }
 
     public function getOauth64()

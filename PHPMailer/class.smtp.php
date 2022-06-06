@@ -262,7 +262,7 @@ class SMTP
     public function connect($host, $port = null, $timeout = 30, $options = array())
     {
         static $streamok;
-        //This is enabled by default since 5.0.0 but some providers disable it
+        //This is enabled by default since 5.0.0 but some establishment disable it
         //Check this once and cache the result
         if (is_null($streamok)) {
             $streamok = function_exists('stream_socket_client');

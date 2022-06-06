@@ -9,7 +9,7 @@
 
     // connect to database
     $con = mysqli_connect('localhost','root','');
-    mysqli_select_db($con, 'proteksyon');
+    mysqli_select_db($con, 'proteksyon.ml');
 
     // retrieve selected results from database and display them on page
     if($userstatus != ''  && $searchinput != ''){

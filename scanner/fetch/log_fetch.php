@@ -1,16 +1,16 @@
 <?php
     session_start();
 
-    $provider_id = $_SESSION['provider_id'];
+    $establishment_id = $_SESSION['establishment_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "
     SELECT 
-    logs_tb.logs_id, logs_tb.time_in, logs_tb.status, logs_tb.provider_id, users_tb.user_first_name, users_tb.user_last_name, users_tb.user_contactno, users_tb.user_city
+    logs_tb.logs_id, logs_tb.time_in, logs_tb.status, logs_tb.establishment_id, users_tb.user_first_name, users_tb.user_last_name, users_tb.user_contactno, users_tb.user_city
     FROM logs_tb, users_tb
-    WHERE logs_tb.provider_id = $provider_id AND logs_tb.user_id = users_tb.user_id
+    WHERE logs_tb.establishment_id = $establishment_id AND logs_tb.user_id = users_tb.user_id
     ORDER BY logs_tb.logs_id DESC;
     ";
 

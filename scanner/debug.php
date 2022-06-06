@@ -3,26 +3,26 @@
 
   require_once '../db_conn.php';
 
-  if (isset($_SESSION['provider_id']) && isset($_SESSION['provider_email'])) {   
+  if (isset($_SESSION['establishment_id']) && isset($_SESSION['establishment_email'])) {   
     
-  $provider_id =  $_SESSION['provider_id'];
-  $provider_verified =  $_SESSION['provider_verified'];
+  $establishment_id =  $_SESSION['establishment_id'];
+  $establishment_verified =  $_SESSION['establishment_verified'];
 
-  $provider_email =  $_SESSION['provider_email'];
-  $provider_password =  $_SESSION['provider_password'];
+  $establishment_email =  $_SESSION['establishment_email'];
+  $establishment_password =  $_SESSION['establishment_password'];
 
-  $provider_name =  $_SESSION['provider_name'];
-  $provider_contactno =  $_SESSION['provider_contactno'];
+  $establishment_name =  $_SESSION['establishment_name'];
+  $establishment_contactno =  $_SESSION['establishment_contactno'];
 
-  $provider_country =  $_SESSION['provider_country'];
-  $provider_city =  $_SESSION['provider_city'];
-  $provider_zipcode =  $_SESSION['provider_zipcode'];
-  $provider_address =  $_SESSION['provider_address'];
+  $establishment_country =  $_SESSION['establishment_country'];
+  $establishment_city =  $_SESSION['establishment_city'];
+  $establishment_zipcode =  $_SESSION['establishment_zipcode'];
+  $establishment_address =  $_SESSION['establishment_address'];
 
-  $provider_longitude =  $_SESSION['provider_longitude'];
-  $provider_latitude =  $_SESSION['provider_latitude'];
+  $establishment_longitude =  $_SESSION['establishment_longitude'];
+  $establishment_latitude =  $_SESSION['establishment_latitude'];
 
-  $provider_image = $_SESSION['provider_image'];
+  $establishment_image = $_SESSION['establishment_image'];
 
 ?>
 <html lang="en">
@@ -98,22 +98,22 @@
             desktop.style.display = "none";
             mobile.style.display = "block";                
 
-            load_provider_data();
-            function load_provider_data(query)
+            load_establishment_data();
+            function load_establishment_data(query)
             {
               $.ajax({
-                url:"./fetch/provider_fetch.php",
+                url:"./fetch/establishment_fetch.php",
                 method:"post",
                 data:{query:query},
                 success:function(data)
                 {
-                  $('#provider_info').html(data);
+                  $('#establishment_info').html(data);
                 }
               });
             } 
 
-            load_provider_data_logs();
-            function load_provider_data_logs(query)
+            load_establishment_data_logs();
+            function load_establishment_data_logs(query)
             {
               $.ajax({
                 url:"./fetch/log_fetch.php",
@@ -206,16 +206,16 @@
       <!-- default --> 
       <div id="Default" style="display: block;" class="tabcontent">   
               <div class="container" style="padding: 0px 0px 0px 0px !important">
-            <!-- provider header -->
-            <div class="pcontainer" id="provider_info">               
+            <!-- establishment header -->
+            <div class="pcontainer" id="establishment_info">               
             </div> 
       </div>
 
       <!-- home --> 
       <div id="Scanner" class="tabcontent">        
       <div class="container" style="padding: 0px 0px 0px 0px !important">
-            <!-- provider header -->
-            <div class="pcontainer" id="provider_info">               
+            <!-- establishment header -->
+            <div class="pcontainer" id="establishment_info">               
             </div> 
 
              <!-- download pwa -->      

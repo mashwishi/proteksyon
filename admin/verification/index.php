@@ -47,7 +47,11 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
     <link href="../../assets/images/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="../../assets/images/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="../../assets/images/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-
+    </script>
+        <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../../images/favicon.png">
 	<title>Proteksyon | Verification</title>
@@ -107,56 +111,7 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 			</span>
 			
 		</a>
-		<ul class="side-menu top">
-			<li >
-				<a href="/admin">
-					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
-				</a>
-			</li>
-			<li> 
-				<a href="/admin/users">
-					<i class='bx bx-user' ></i>
-					<span class="text">Users</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/providers">
-					<i class='bx bx-building' ></i>
-					<span class="text">Providers</span>
-				</a>
-			</li>
-			<li  class="active">
-				<a href="/admin/verification">
-					<i class='bx bx-list-check' ></i>
-					<span class="text">Verification</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/requests">
-					<i class='bx bxs-inbox' ></i>
-					<span class="text">Requests</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/reports">
-					<i class='bx bxs-megaphone' ></i>
-					<span class="text">Reports</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/settings">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="/admin/logout" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
-		</ul>
+		<?php include '../sidebar.php'; ?>
 	</section>
 	<!-- SIDEBAR -->
 
@@ -176,7 +131,16 @@ if (isset($_SESSION['admin_user_id']) && isset($_SESSION['admin_user_email'])) {
 				<div class="left">
 					
 					<h1 id="">
-						User List
+						<?php 
+						//Health Center
+						if($user_uuid == '0x926a09cc9dec481113888511b69c60f5'){
+							echo 'User Verification';
+						}
+						//Barangay
+						if($user_uuid == '0x833a5adfaa7b527480b2e02db7333e8d'){
+							echo 'Establishments Approval';
+						}
+						?>
 					</h1>
 					
 					<span class="text" id="status_office"></span>

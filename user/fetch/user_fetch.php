@@ -2,7 +2,7 @@
     session_start();
 
     $user_id = $_SESSION['user_id'];
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $aquery = "SELECT * FROM users_tb where user_id = $user_id";
@@ -33,7 +33,7 @@
                                 <h1 class="profile-user-name">' . $arow["user_first_name"] . '                    
                                 <i class="fas fa-check-circle" style="color: #1EF0F0" alt="verified-card"></i>
                                 </h1>
-                                <button class="btn profile-edit-btn">
+                                <button class="btn profile-edit-btn" onclick="cardRequest()">
                                 ' . $arow["user_vaccine"] . ' - ' . $arow["user_dose"] . ' 
                                 </button>
                                 </div>

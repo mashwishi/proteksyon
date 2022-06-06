@@ -3,7 +3,7 @@
 
     $user_id = $_SESSION['user_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon");
+    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
     $output = '';
 
     $query = "
@@ -23,7 +23,8 @@
                     <form action="./settings/changeContact.php" method="post" enctype="multipart/form-data">
                         <div class="form-group" style="margin-bottom: 10px">
                             <label for="Contactno"><h3>Contact Number</h3></label>
-                            <input type="number" id="Contactno" class="form-control" name="Contactno" value="'. $row["user_contactno"] . '" required>
+                            <input type="number" id="Contactno" class="form-control" name="Contactno" value="'. $row["user_contactno"] . '" required onkeydown="limit(this);" onkeyup="limit(this);" oninput="limit(this);">
+                            <script src="./settings/contactNumber.js"></script>
                         </div>';
                     if($row["user_gender"] == 'Male'){
                         $output .= '
@@ -41,7 +42,7 @@
                             </div>
                         </div>
                         <div class="form-group" style="margin-bottom: 10px">
-                            <input type="submit" value="Update Contact" name="changeContact"
+                            <input type="submit" value="Update Contact" name="changeContact" id="forNumber"
                                 style="text-align:center !important; text-decoration:none; justify-content:center; align-items:center;
                                 margin-left: 5px; margin-right: 5px;display: inline-block !important;padding: 5px 28px !important;
                                 color: black !important;background-color: white !important;border: 0.1rem solid #dbdbdb !important;

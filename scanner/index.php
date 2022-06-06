@@ -1,28 +1,31 @@
 <?php 
+ini_set('display_errors', 1); 
+error_reporting(E_ALL);
+
   session_start();
 
   require_once '../db_conn.php';
 
-  if (isset($_SESSION['provider_id']) && isset($_SESSION['provider_email'])) {   
+  if (isset($_SESSION['establishment_id']) && isset($_SESSION['establishment_email'])) {   
     
-  $provider_id =  $_SESSION['provider_id'];
-  $provider_verified =  $_SESSION['provider_verified'];
+  $establishment_id =  $_SESSION['establishment_id'];
+  $establishment_verified =  $_SESSION['establishment_verified'];
 
-  $provider_email =  $_SESSION['provider_email'];
-  $provider_password =  $_SESSION['provider_password'];
+  $establishment_email =  $_SESSION['establishment_email'];
+  $establishment_password =  $_SESSION['establishment_password'];
 
-  $provider_name =  $_SESSION['provider_name'];
-  $provider_contactno =  $_SESSION['provider_contactno'];
+  $establishment_name =  $_SESSION['establishment_name'];
+  $establishment_contactno =  $_SESSION['establishment_contactno'];
 
-  $provider_country =  $_SESSION['provider_country'];
-  $provider_city =  $_SESSION['provider_city'];
-  $provider_zipcode =  $_SESSION['provider_zipcode'];
-  $provider_address =  $_SESSION['provider_address'];
+  $establishment_country =  $_SESSION['establishment_country'];
+  $establishment_city =  $_SESSION['establishment_city'];
+  $establishment_zipcode =  $_SESSION['establishment_zipcode'];
+  $establishment_address =  $_SESSION['establishment_address'];
 
-  $provider_longitude =  $_SESSION['provider_longitude'];
-  $provider_latitude =  $_SESSION['provider_latitude'];
+  $establishment_longitude =  $_SESSION['establishment_longitude'];
+  $establishment_latitude =  $_SESSION['establishment_latitude'];
 
-  $provider_image = $_SESSION['provider_image'];
+  $establishment_image = $_SESSION['establishment_image'];
 
 ?>
 <html lang="en">
@@ -59,7 +62,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.1/tailwind.min.css">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <style>
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
+    </style>
 
     <!-- Java Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -94,24 +100,24 @@
           if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             mobile.style.display = "block";
             desktop.style.display = "none";
-            mobile.style.display = "block";                
+            mobile.style.display = "block"; 
 
-            load_provider_data();
-            function load_provider_data(query)
+            load_establishment_data();
+            function load_establishment_data(query)
             {
               $.ajax({
-                url:"./fetch/provider_fetch.php",
+                url:"./fetch/establishment_fetch.php",
                 method:"post",
                 data:{query:query},
                 success:function(data)
                 {
-                  $('#Default > .container > #provider_info').html(data);
-                  $('#Scanner > .container > #provider_info').html(data);
+                  $('#Default > .container > #establishment_info').html(data);
+                  $('#Scanner > .container > #establishment_info').html(data);
                 }
               });
             } 
-            load_provider_data_logs();
-            function load_provider_data_logs(query)
+            load_establishment_data_logs();
+            function load_establishment_data_logs(query)
             {
               $.ajax({
                 url:"./fetch/log_fetch.php",
@@ -131,26 +137,24 @@
             desktop.style.display = "desktop";
           }
           
-      }); 
-
+      });    
+      
       function timeIn(){    
-          var UUID = ScannedUUID;
-          console.log("Working, TimeIn: " + UUID)    
-          $.ajax({
-          url:"./fetch/time_user.php",
-          method:"post",
-          data:{
-              //query:query,
-              UUID:UUID
-          },
-          success:function(data)
-          {                
-              $("#user_popup > div").remove();  
-              $("#user_popup").html(data);
-          }
-          
-          });
-      }          
+            var UUIDX = $("#UUIDInput").val(); //ScannedUUID;
+            $.ajax({
+              url:"./fetch/time_user.php",
+              method:"post",
+              data:{
+                  UUIDX:UUIDX
+              },
+              success:function(data)
+              {              
+                  console.log("Successfully Added Time in to")   
+                  $("#user_popup > div").remove();  
+                  $("#user_popup").html(data);
+              }
+            });
+      }   
 
       function scannedTransfer(){
           var UUID = ScannedUUID;
@@ -203,8 +207,8 @@
       <!-- default --> 
       <div id="Default" style="display: block;" class="tabcontent">   
       <div class="container" style="padding: 0px 0px 0px 0px !important">
-            <!-- provider header -->
-            <div class="pcontainer" id="provider_info" style="box-shadow: 0px 2px 5px 0px #888888; margin-bottom: 5%;">               
+            <!-- establishment header -->
+            <div class="pcontainer" id="establishment_info" style="box-shadow: 0px 2px 5px 0px #888888; margin-bottom: 5%;">               
             </div> 
       </div> 
 
@@ -216,8 +220,8 @@
       <!-- scanner --> 
       <div id="Scanner" class="tabcontent">        
       <div class="container" style="padding: 0px 0px 0px 0px !important">
-            <!-- provider header -->
-            <div class="pcontainer" id="provider_info">               
+            <!-- establishment header -->
+            <div class="pcontainer" id="establishment_info">               
             </div> 
 
              <!-- download pwa -->      

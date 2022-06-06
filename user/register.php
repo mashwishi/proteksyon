@@ -43,6 +43,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
       window.addEventListener('load', () => {
+
+          $(function(){
+            var dtToday = new Date();
+        
+            var month = dtToday.getMonth() + 1;// jan=0; feb=1 .......
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear() - 10;
+            if(month < 10)
+                month = '0' + month.toString();
+            if(day < 10)
+                day = '0' + day.toString();
+          var minDate = year + '-' + month + '-' + day;
+            var maxDate = year + '-' + month + '-' + day;
+          $('#bday').attr('max', maxDate);
+          });
+
+          $("input[type='date']").keydown(function (event) { event.preventDefault(); });
+
           registerSW();      
       });
 
@@ -57,7 +75,8 @@
       }     
     </script>
     	<style>
-        img[alt*="www.000webhost.com"] { display: none!important; }
+                img[alt*="www.000webhost.com"] { display: none !important; }
+        div.disclaimer{ display: none !important; }
     </style>    
   </head>
   <body>
@@ -95,7 +114,7 @@
           <div class="tab">
               Email:
               <p><input id="email" placeholder="example@mail.com" onkeyup="validateEmail()" name="email" type="email"></p>
-              Mobile No.:
+              Mobile No.::
               <p>
               <input type="number" id="phone" name="phone" class="phone"
               placeholder="09XXXXXXXXX" pattern="[0-9]{11}" 
@@ -107,7 +126,7 @@
           <!-- 3 Birthday and gender -->
           <div class="tab">Birthday:
               <p>
-                <input oninput="this.className = ''" name="birthday" type="date">
+                <input oninput="this.className = ''" name="birthday" type="date" id="bday">
               </p>
               Gender:
               <p>
@@ -138,14 +157,14 @@
               <p>
                 <select name="vaccine" id='vaccine' onclick="this.className = ''">
                     <option value="BioNTech, Pfizer">BioNTech, Pfizer</option>
+					<option value="Sinovac-CoronaVac">Sinovac-CoronaVac</option>   
                     <option value="Moderna">Moderna</option>
-                    <option value="Johnson & Johnson">Johnson& Johnson </option>
+                    <option value="Johnson & Johnson">Johnson & Johnson </option>
                     <option value="Sputnik V ">Sputnik V </option>
                     <option value="Sputnik Light">Sputnik Light</option>
                     <option value="Sinopham BBIBP">Sinopham BBIBP</option>
                     <option value="Oxford, Astraženeca">Oxford, Astraženeca</option>
-                    <option value="Novavax ">Novavax</option>
-                    <option value="CoronaVac ">CoronaVac</option>          
+                    <option value="Novavax ">Novavax</option>       
                     <option value="Covaxin ">Covaxin</option>                                                                                                                                                                             
                 </select>  
               </p>
@@ -240,7 +259,7 @@
           </div>
           <!-- 10 Captcha -->       
           <div class="tab">  
-              <p style="font-size: 15px !important;">Solving Re-Captcha means you agree to our <a href="/terms" style="color: #4B6691; font-size: 15px !important;" target="_blank">Terms</a> and <a style="color: #4B6691; font-size: 15px !important;" href="/policy" target="_blank">Policy</a>.</p>                   
+              <p style="font-size: 15px !important;">Solving Re-Captcha means you agree to our <a href="/terms-and-condition" style="color: #4B6691; font-size: 15px !important;" target="_blank">Terms</a> and <a style="color: #4B6691; font-size: 15px !important;" href="/privacy-policy" target="_blank">Policy</a>.</p>                   
               <p>
               <div style="margin-top: 3%;" class="h-captcha" data-sitekey="<?php echo $hcaptcha_sitekey ?>"></div>
               <p style="font-size: 10px !important;">

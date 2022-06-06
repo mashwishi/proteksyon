@@ -2,9 +2,9 @@
 error_reporting(0);
 session_start();
 
-	$database_username = 'root';
+	$database_username ='root';
 	$database_password = '';
-	$connect = new PDO( 'mysql:host=localhost;dbname=proteksyon', $database_username, $database_password );
+	$connect = new PDO( 'mysql:host=localhost;dbname=proteksyon.ml', $database_username, $database_password );
 
 /*function get_total_row($connect)
 {

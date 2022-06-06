@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    $conn = mysqli_connect("localhost", "root", "", "proteksyon");
+    $conn = mysqli_connect("localhost", "root", "", "proteksyon.ml");
 
     $UUIDx = $_POST['user_uuid'];
 
@@ -139,11 +139,11 @@
 
                                 if($mail->Send())
                                 {
-                                    header('Location: /admin/verification/modify?UUID='.$UUIDx.'&updateSettings=0');
+                                    header('Location: /admin/verification/');
                                 }
                                 else
                                 {
-                                    header('Location: /admin/verification/modify?UUID='.$UUIDx.'&updateSettings=10');
+                                    header('Location: /admin/verification/');
                                 }
                         }
                         else {
@@ -161,4 +161,7 @@
             header('Location: /admin/verification/modify?UUID='.$UUIDx.'&updateSettings=1');
         }
     }
+
+    include './changeEstablishment.php'
+
 ?>  
