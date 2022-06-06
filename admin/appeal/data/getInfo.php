@@ -3,7 +3,8 @@ session_start();
 
 $ReportID = isset($_POST["ReportID"]) ? $_POST["ReportID"] : '';
 
-$connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+include '../../../mysqli_conn.php';
+
 $output = '';
 
 $query = "

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
     $output = '';
 
     $aquery = "SELECT * FROM establishment_tb ORDER BY establishment_id DESC LIMIT 5;";

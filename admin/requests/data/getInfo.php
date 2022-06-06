@@ -3,7 +3,7 @@
 
     $RequestID = isset($_POST["RequestID"]) ? $_POST["RequestID"] : '';
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../../mysqli_conn.php';
     $output = '';
 
     $query = "

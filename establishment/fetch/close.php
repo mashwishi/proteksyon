@@ -5,7 +5,7 @@
 
     $establishment_id = $_SESSION['establishment_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
     $output = '';
 
     $query = "SELECT * FROM establishment_tb where establishment_id = '$establishment_id'";

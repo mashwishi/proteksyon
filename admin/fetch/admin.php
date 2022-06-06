@@ -3,7 +3,7 @@
 
     $user_id = $_SESSION['admin_user_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
     $output = '';
 
 

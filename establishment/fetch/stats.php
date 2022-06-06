@@ -3,7 +3,7 @@
 
     $establishment_id = $_SESSION['establishment_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
     $output = '';
 
     $aquery = "SELECT COUNT(user_id) AS TotalTimein FROM logs_tb where establishment_id = $establishment_id";

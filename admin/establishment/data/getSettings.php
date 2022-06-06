@@ -3,7 +3,7 @@
 
     $establishment_id = isset($_POST["EstablishmentID"]) ? $_POST["EstablishmentID"] : '';
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../../mysqli_conn.php';
     $output = '';
 
     $query = "

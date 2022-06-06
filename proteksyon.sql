@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2022 at 10:24 AM
+-- Generation Time: Jun 06, 2022 at 10:55 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -163,7 +163,7 @@ CREATE TABLE `users_tb` (
 
 INSERT INTO `users_tb` (`user_id`, `user_uuid`, `user_email`, `user_password`, `user_contactno`, `user_avatar`, `user_first_name`, `user_middle_name`, `user_last_name`, `user_birthday`, `user_gender`, `user_country`, `user_zipcode`, `user_city`, `user_address`, `user_card_front`, `user_card_back`, `user_vaccine`, `user_dose`, `user_status`, `user_verification`, `user_type`, `forgot_password`) VALUES
 (1, '0x5f1775f86786759dc51083bc233bf5f9', 'mashwishi@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 639093902913, 'male.jpg', 'Mathew Agustin', 'Ordoñez', 'Bella', '07/04/2000', 'Male', 'Philippines', '4114', 'Dasmarinas', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', 'sample.jpg', 'sample.jpg', 'BioNTech, Pfizer', 'Second Dose', 1, 1, 1, NULL),
-(2, '0x52c9f2d2ba7c166497b743eb834349aa', 'charneenbella@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 69000000000, 'female.jpg', 'Charneen', 'Valdez', 'Salve', '29/07/1998', 'Female', 'Philippines', '4114', 'Dasmarinas City', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', 'sample.jpg', 'sample.jpg', 'Moderna', 'Second Dose', 0, 1, 0, NULL),
+(2, '0x52c9f2d2ba7c166497b743eb834349aa', 'charneenbella@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 69000000000, 'female.jpg', 'Charneen', 'Valdez', 'Salve', '29/07/1998', 'Female', 'Philippines', '4114', 'Dasmarinas City', 'Abraham st. Phase 1 Dexterville Classic, Brgy. Sabang', 'sample.jpg', 'sample.jpg', 'Moderna', 'Second Dose', 1, 1, 0, NULL),
 (10, '0xfe55db489b52d47ec3325c0f450e0282', 'johnmichael.denisa@cvsu.edu.ph', '7ff402f0aa51495dfe96d911d4a5e105', 639291393358, 'male.jpg', 'JOHN ', 'MICHAEL', 'DENISA', '1999-04-28', 'Male', 'Philippines', '4104', 'Imus Cavite', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'sample.jpg', 'sample.jpg', 'BioNTech, Pfizer', 'Booster Dose', 1, 1, 1, NULL),
 (24, '0xee41537471f42056682483ad5d9f0b84', 'vensoxas10@gmail.com', '89914cbcf7c5c37fea3ee736e5f8892f', 9752112120, 'male.jpg', 'Patrick Reiner ', 'Ancuelo', 'Faeldonea', '1999-05-05', 'Male', 'Philippines', '4103', 'Imus City', 'Blk 61 Lot 22 A boron St. Ph4 golden city', 'sample.jpg', 'sample.jpg', 'Moderna', 'Second Dose', 1, 0, 1, NULL),
 (27, '0x185320cda7e0c6b599f51a32e404baaf', 'demo@proteksyon.ph', '827ccb0eea8a706c4c34a16891f84e7b', 9998982891, 'male.jpg', 'Demo', 'User', 'Account', '2012-05-24', 'Male', 'Philippines', '4114', 'Dasmarinas', 'BX LX Phase X Dexterville Classic, Sabang', 'sample.jpg', 'sample.jpg', 'BioNTech, Pfizer', 'Booster Dose', 1, 1, 0, NULL),
@@ -244,19 +244,19 @@ ALTER TABLE `user_reports`
 -- AUTO_INCREMENT for table `establishment_tb`
 --
 ALTER TABLE `establishment_tb`
-  MODIFY `establishment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `establishment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `logs_tb`
 --
 ALTER TABLE `logs_tb`
-  MODIFY `logs_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `logs_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `request_tb`
 --
 ALTER TABLE `request_tb`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `status_tb`

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../../mysqli_conn.php';
     $output = '';
 
     $aquery = "SELECT COUNT(report_status) AS Recovered FROM user_reports WHERE report_status = 2";

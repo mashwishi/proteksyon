@@ -3,7 +3,7 @@
 
     $UUID = isset($_POST["UUID"]) ? $_POST["UUID"] : '';
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../../mysqli_conn.php';
     $output = '';
 
     $query = "SELECT * FROM users_tb WHERE user_uuid = '$UUID'";

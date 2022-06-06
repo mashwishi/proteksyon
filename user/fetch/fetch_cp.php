@@ -31,7 +31,7 @@
 
                 if($newPass == $confirmPass){
                     
-                    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+                    include '../../mysqli_conn.php';
                     $output = '';
                 
                     $query = "

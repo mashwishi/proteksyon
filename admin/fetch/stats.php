@@ -2,7 +2,7 @@
     session_start();
 
     
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
     $output = '';
 
     $aquery = "SELECT COUNT(user_id) AS TotalUsers FROM users_tb";

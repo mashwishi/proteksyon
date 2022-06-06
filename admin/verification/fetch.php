@@ -4,9 +4,7 @@ session_start();
 
   $user_uuid = $_SESSION['admin_user_uuid'];
 
-	$database_username ='root';
-	$database_password = '';
-	$connect = new PDO( 'mysql:host=localhost;dbname=proteksyon.ml', $database_username, $database_password );
+  include '../../pdo_conn.php';
 
 
 

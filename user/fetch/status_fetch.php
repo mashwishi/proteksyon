@@ -3,7 +3,7 @@
 
     $user_id = $_SESSION['user_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
     $output = '';
     $query = "SELECT * FROM establishment_tb";
     $result = mysqli_query($connect, $query);

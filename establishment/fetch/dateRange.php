@@ -3,7 +3,7 @@
 
     $establishment_id = $_SESSION['establishment_id'];
 
-    $connect = mysqli_connect("localhost", "root", "", "proteksyon.ml");
+    include '../../mysqli_conn.php';
 
 if(isset($_POST["from_date"], $_POST["to_date"])) {
     $userData = "";
