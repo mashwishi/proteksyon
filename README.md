@@ -13,7 +13,7 @@
   </a>
 <br /><br />
   <p align="center">
-    Creating an easiest way to share your social media links!
+    The best way to prevent and slow down transmission is be well informed about the COVID-19 virus. Protect yourself and others from infection by washing your hands at-least 20sec and not touching your face.
     <br />
     <a href="https://proteksyon.ml/"><strong>View Demo »</strong></a>
     <br />
