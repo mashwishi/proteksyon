@@ -13,8 +13,8 @@
   </a>
 <br /><br />
   <p align="center">
-    The best way to prevent and slow down transmission is be well informed about the COVID-19 virus. Protect yourself and others from infection by washing your hands at-least 20sec and not touching your face.
-    <br />
+    The best way to prevent and slow down transmission is be well informed about the COVID-19 virus.<br/>Protect yourself and others from infection by washing your hands at-least 20sec and not touching your face.
+    <br /><br/>
     <a href="https://proteksyon.ml/"><strong>View Demo »</strong></a>
     <br />
     <br />
