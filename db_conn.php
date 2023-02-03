@@ -3,13 +3,7 @@
 $sName = "localhost";
 $uName = "root";
 $pass = "";
-$db_name = "proteksyon.ml";
-
-#remotemysql.com
-#$sName = "remotemysql.com";
-#$uName = "C9eA1TETBR";
-#$pass = "OdvWFvKWBw";
-#$db_name = "C9eA1TETBR";
+$db_name = "proteksyon";
 
 try {
     $conn = new PDO("mysql:host=$sName;dbname=$db_name", 

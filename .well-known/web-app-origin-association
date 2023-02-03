@@ -1,0 +1,10 @@
+{
+  "web_apps": [
+    {
+      "manifest": "http://proteksyon.ml/manifest.json",
+      "details": {
+        "paths": ["/*"]
+      }
+    }
+  ]
+}
